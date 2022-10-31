@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\repairnow-api.csproj": {}
+    "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\repairnow-api.csproj": {
+    "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\repairnow-api.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api.csproj",
         "projectName": "repairnow-api",
-        "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\repairnow-api.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
