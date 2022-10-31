@@ -1,32 +1,34 @@
-partial class Program
-{
-    private static void Main(string[] args)
+namespace repairnow_api{
+    partial class Program
     {
-        var builder = WebApplication.CreateBuilder(args);
-
-        builder.Services.AddControllers();
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-
-        var app = builder.Build();
-
-        app.UseSwagger(options =>
+        private static void Main(string[] args)
         {
-            options.SerializeAsV2 = true;
-        });
+            var builder = WebApplication.CreateBuilder(args);
 
-        app.UseSwaggerUI(options =>
-        {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-            options.RoutePrefix = string.Empty;
-        });
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
-        app.UseHttpsRedirection();
+            var app = builder.Build();
 
-        app.UseAuthorization();
+            app.UseSwagger(options =>
+            {
+                options.SerializeAsV2 = true;
+            });
 
-        app.MapControllers();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
+            });
 
-        app.Run();
+            app.UseHttpsRedirection();
+
+            app.UseAuthorization();
+
+            app.MapControllers();
+
+            app.Run();
+        }
     }
 }
