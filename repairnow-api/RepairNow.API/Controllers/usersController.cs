@@ -59,8 +59,8 @@ namespace RepairNowAPI.Controllers
             //};
 
             var user = _mapper.Map<UserResource, User>(userInput);
-            string xd = "aea";
-            var result = await _usersDomain.createUser(xd);
+            string User = "UserExample";
+            var result = await _usersDomain.createUser(User);
             return result;
         }
 
