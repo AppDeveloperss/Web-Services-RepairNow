@@ -22,10 +22,10 @@ namespace RepairNowAPI.Controllers
 
         private IMapper _mapper;
         //luego en el constructor de esta clase le pasamos ese parametro
-        public usersController(IUsersDomain usersDomain, IMapper _mapper)
+        public usersController(IUsersDomain usersDomain, IMapper mapper)
         {
             _usersDomain = usersDomain;
-            _mapper = this._mapper;
+            _mapper = mapper;
         }
         
         // GET: api/users

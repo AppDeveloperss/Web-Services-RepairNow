@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj": {}
+    "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj": {
+    "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj",
         "projectName": "RepairNow.Domain",
-        "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Domain\\obj\\",
+        "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj",
+        "packagesPath": "C:\\Users\\axekr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\axekr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj"
+              "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj": {
+                "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj"
               }
             }
           }
@@ -69,21 +69,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj": {
+    "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj",
+        "projectUniqueName": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj",
         "projectName": "RepairNow.Infraestructure",
-        "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Documents\\GitHub\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\obj\\",
+        "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj",
+        "packagesPath": "C:\\Users\\axekr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\axekr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -160,7 +160,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
