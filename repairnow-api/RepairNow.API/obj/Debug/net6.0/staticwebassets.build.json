@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "i4q66kwLSWLwfEt+pCPVcY05H4zHVqwR5yYaH+7Mztk=",
+  "Source": "RepairNow.API",
+  "BasePath": "_content/RepairNow.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

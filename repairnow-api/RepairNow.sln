@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairNow.API", "RepairNow.API\RepairNow.API.csproj", "{2A6CAC84-81A4-4061-A65F-3665736CA723}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairNow.Domain", "RepairNow.Domain\RepairNow.Domain.csproj", "{4F97F2D3-B239-41A6-95FB-6A582AFFEFD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairNow.Infraestructure", "RepairNow.Infraestructure\RepairNow.Infraestructure.csproj", "{A90B99D3-141C-4974-A317-301DB1C9AF6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A6CAC84-81A4-4061-A65F-3665736CA723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A6CAC84-81A4-4061-A65F-3665736CA723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A6CAC84-81A4-4061-A65F-3665736CA723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A6CAC84-81A4-4061-A65F-3665736CA723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F97F2D3-B239-41A6-95FB-6A582AFFEFD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F97F2D3-B239-41A6-95FB-6A582AFFEFD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F97F2D3-B239-41A6-95FB-6A582AFFEFD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F97F2D3-B239-41A6-95FB-6A582AFFEFD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A90B99D3-141C-4974-A317-301DB1C9AF6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A90B99D3-141C-4974-A317-301DB1C9AF6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A90B99D3-141C-4974-A317-301DB1C9AF6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A90B99D3-141C-4974-A317-301DB1C9AF6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
