@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Inyeccion de Dependencias
-//1ero se hace esto para comenzar con la inyeccion, le paso la interfaz y por el otro la clase
+//Primero se hace esto para comenzar con la inyeccion, le paso la interfaz y por el otro la clase
 builder.Services.AddScoped<IUsersDomain, UsersDomain>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 
