@@ -96,9 +96,9 @@ namespace RepairNowAPI.Controllers
 
         // DELETE: api/users/5
         [HttpDelete("{id}")]
-        public Boolean Delete(int id)
+        public async Task<Boolean> Delete(int id)
         {
-            var result = _usersDomain.deleteUser(id);
+            var result = await _usersDomain.deleteUser(id);
             return result;
         }
     };

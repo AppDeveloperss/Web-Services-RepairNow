@@ -8,5 +8,5 @@ public interface IUsersDomain
     User getUserById(int id);
     Task<Boolean> createUser(User user);
     Task<Boolean> updateUser(int id, User user);
-    Boolean deleteUser(int id);
+    Task<Boolean> deleteUser(int id);
 }
