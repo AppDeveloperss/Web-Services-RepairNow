@@ -20,11 +20,8 @@ namespace RepairNowAPI.Controllers
 
     public class usersController : ControllerBase
     {
-        //Instanciamos una variable en la interfaz
         private IUsersDomain _usersDomain;
-
         private IMapper _mapper;
-        //luego en el constructor de esta clase le pasamos ese parametro
         public usersController(IUsersDomain usersDomain, IMapper mapper)
         {
             _usersDomain = usersDomain;

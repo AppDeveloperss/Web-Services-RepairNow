@@ -22,9 +22,9 @@ public class AppliancesDomain:IAppliancesDomain
         return _appliancesRepository.getApplianceById(id);
     }
 
-    public Task<bool> createAppliance(string name)
+    public async Task<bool> createAppliance(Appliance appliance)
     {
-        return _appliancesRepository.createAppliance(name);
+        return await _appliancesRepository.createAppliance(appliance);
     }
 
     public bool updateAppliance(int id, string name)

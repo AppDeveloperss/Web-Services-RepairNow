@@ -18,27 +18,24 @@ public class AppliancesRepository:IAppliancesRepository
     public Appliance getApplianceById(int id)
     {
         return _repairNowDb.Appliances.Find(id);
-        //Single or default devuelve solo un elemento mientras que el ToList devuelve una lista
-        //  return _repairNowDb.Users
-        //    .Include(user => user.Tutorials)
-        //    .SingleOrDefault(user=>user.id==id)
     }
 
-    public async Task<bool> createAppliance(string name)
+    public async Task<bool> createAppliance(Appliance appliance)
     {
-        Appliance appliance = new Appliance();
-        appliance.name = name;
+
+        using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                _repairNowDb.Appliances.AddAsync(appliance);
+                _repairNowDb.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
+            }
+        }
         
-        _repairNowDb.Database.BeginTransactionAsync();
-        try
-        {
-            _repairNowDb.Appliances.AddAsync(appliance);
-            _repairNowDb.SaveChangesAsync();
-        }
-        catch (Exception ex)
-        {
-            _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
-        }
         _repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good
         return true;
     }

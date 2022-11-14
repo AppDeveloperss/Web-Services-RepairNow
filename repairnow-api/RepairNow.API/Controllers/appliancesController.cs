@@ -15,10 +15,10 @@ namespace RepairNowAPI.Controllers
         private IAppliancesDomain _appliancesDomain;
         private IMapper _mapper;
         
-        public AppliancesController(IAppliancesDomain appliancesDomain, IMapper _mapper)
+        public AppliancesController(IAppliancesDomain appliancesDomain, IMapper mapper)
         {
             _appliancesDomain = appliancesDomain;
-            this._mapper=_mapper;
+            _mapper=mapper;
         }
         
         // GET: api/appliances
@@ -37,12 +37,21 @@ namespace RepairNowAPI.Controllers
         
         // POST: api/appliances
         [HttpPost]
-        public async Task<Boolean> Post([FromBody] ApplianceResource applianceInput)
+        [ProducesResponseType(typeof(IActionResult),201)]
+        public async Task<IActionResult> Post([FromBody] ApplianceResource applianceInput)
         {
-            var user = _mapper.Map<ApplianceResource, Appliance>(applianceInput);
-            string xd = "aea";
-            var result = await _appliancesDomain.createAppliance(xd);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest("Error de Formato");
+                var appliance = _mapper.Map<ApplianceResource, Appliance>(applianceInput);
+                var result = await _appliancesDomain.createAppliance(appliance);
+
+                return StatusCode(StatusCodes.Status201Created, "Appliance Creado");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error al procesar");
+            }
         }
         
         // PUT: api/appliances/5

@@ -11,5 +11,4 @@ public class Appliance: BaseModel
     public string urlImage { get; set; }
     public string insuranceDate { get; set; }
     public int clientId { get; set; }
-    public User User { get; set; }
 }
