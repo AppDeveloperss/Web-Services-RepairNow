@@ -27,9 +27,9 @@ public class AppliancesDomain:IAppliancesDomain
         return await _appliancesRepository.createAppliance(appliance);
     }
 
-    public bool updateAppliance(int id, string name)
+    public async Task<bool> updateAppliance(int id, Appliance appliance)
     {
-        return _appliancesRepository.updateAppliance(id, name);
+        return await _appliancesRepository.updateAppliance(id, appliance);
     }
 
     public bool deleteAppliance(int id)

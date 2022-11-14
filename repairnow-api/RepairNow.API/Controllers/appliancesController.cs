@@ -56,10 +56,24 @@ namespace RepairNowAPI.Controllers
         
         // PUT: api/appliances/5
         [HttpPut("{id}")]
-        public Boolean Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] ApplianceResource applianceInput)
         {
-            var result = _appliancesDomain.updateAppliance(id, value);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var appliance = _mapper.Map<ApplianceResource, Appliance>(applianceInput);
+                var result = _appliancesDomain.updateAppliance(id, appliance);
+                appliance.id = id;
+                return StatusCode(StatusCodes.Status200OK,"Usuario Actualizado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
         }
         
         
