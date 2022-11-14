@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Net.Mime;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RepairNow.Domain;
 using RepairNow.Infraestructure;
@@ -8,11 +9,11 @@ namespace RepairNowAPI.Controllers
 {
     [Route("api/appliances")]
     [ApiController]
+    [Produces(MediaTypeNames.Application.Json)]
     public class AppliancesController:ControllerBase
     {
         private IAppliancesDomain _appliancesDomain;
         private IMapper _mapper;
-        
         
         public AppliancesController(IAppliancesDomain appliancesDomain, IMapper _mapper)
         {
