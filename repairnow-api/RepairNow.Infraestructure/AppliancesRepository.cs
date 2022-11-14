@@ -4,7 +4,6 @@ namespace RepairNow.Infraestructure;
 
 public class AppliancesRepository:IAppliancesRepository
 {
-    
     private RepairNowDB _repairNowDb;
     public AppliancesRepository(RepairNowDB repairNowDb)
     {

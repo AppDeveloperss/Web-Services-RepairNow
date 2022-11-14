@@ -19,7 +19,7 @@ public class UsersDomain:IUsersDomain
 
     public User getUserById(int id)
     {
-        return _usersRepository.getUserById(id);
+        return  _usersRepository.getUserById(id);
     }
 
     public async Task<bool> createUser(User user)

@@ -39,6 +39,7 @@ public class UsersRepository:IUsersRepository
 
     public User getUserById(int id)
     {
+        //return _repairNowDb.Users.Find(id);
         return _repairNowDb.Users.Find(id);
 
         //Single or default devuelve solo un elemento mientras que el ToList devuelve una lista
@@ -73,34 +74,73 @@ public class UsersRepository:IUsersRepository
 
     public async Task<bool> updateUser(int id, User user_new)
     {
-        var strategy = _repairNowDb.Database.CreateExecutionStrategy();
+        //User user = new User();
+        //user.firstName = name;
         
-        await strategy.ExecuteAsync(async () =>
+        
+        //TRANSACCION solo para insert, updated, delete , para lectura no hay transacciones
+        using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
         {
-            await using (var transacction = await _repairNowDb.Database.BeginTransactionAsync())
+            try
             {
-                try
-                {
-                    //User user = _repairNowDb.Users.Find(id);
-                    User user=await _repairNowDb.Users.FindAsync(id);
-                    user.DateUpdate=DateTime.Now;
-                    user = user_new;
-                    _repairNowDb.Users.Update(user);
-                    await _repairNowDb.SaveChangesAsync();
-                    await transacction.CommitAsync();
-
-
-                }
-                catch(Exception ex)
-                {
-                    await _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
-                    throw ex;
-                }
+               //User user = _repairNowDb.Users.Find(id);
+               User user=await _repairNowDb.Users.FindAsync(id);
+               
+               user.DateUpdate=DateTime.Now;
+               user.firstName = user_new.firstName;
+               user.lastName = user_new.lastName;
+               user.email = user_new.email;
+               user.password = user_new.password;
+               user.phone = user_new.phone;
+               user.plan = user_new.plan;
+               user.address = user_new.address;
+               
+               _repairNowDb.Users.Update(user);
+               _repairNowDb.SaveChanges();
+               //await transacction.CommitAsync();
             }
-        });
+            catch (Exception ex)
+            {
+                _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
+            }
+        }
         
         _repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good
         return true;
+        
+        //var strategy = _repairNowDb.Database.CreateExecutionStrategy();
+        //
+        //await strategy.ExecuteAsync(async () =>
+        //{
+        //    await using (var transacction = await _repairNowDb.Database.BeginTransactionAsync())
+        //    {
+        //        try
+        //        {
+        //            //User user = _repairNowDb.Users.Find(id);
+        //            User user=await _repairNowDb.Users.FindAsync(id);
+        //            
+        //            user.DateUpdate=DateTime.Now;
+        //            user.firstName = user_new.firstName;
+        //            user.lastName = user_new.lastName;
+        //            user.email = user_new.email;
+        //            user.password = user_new.password;
+        //            user.phone = user_new.phone;
+        //            user.plan = user_new.plan;
+        //            user.address = user_new.address;
+        //            
+        //            _repairNowDb.Users.Update(user);
+        //            await _repairNowDb.SaveChangesAsync();
+        //            await transacction.CommitAsync();
+        //        }
+        //        catch(Exception ex)
+        //        {
+        //            await _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
+        //        }
+        //    }
+        //});
+        //
+        //_repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good
+        //return true;
     }
 
     public bool deleteUser(int id)
