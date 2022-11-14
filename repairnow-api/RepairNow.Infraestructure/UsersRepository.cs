@@ -54,7 +54,7 @@ public class UsersRepository:IUsersRepository
         
         
         //TRANSACCION solo para insert, updated, delete , para lectura no hay transacciones
-        using (var trasacction = _repairNowDb.Database.BeginTransactionAsync())
+        using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
         {
             try
             {
@@ -71,18 +71,36 @@ public class UsersRepository:IUsersRepository
         return true;
     }
 
-    public bool updateUser(int id, string name)
+    public async Task<bool> updateUser(int id, User user_new)
     {
-        User user = _repairNowDb.Users.Find(id);
-
-        user.firstName = name;
-        user.DateUpdate=DateTime.Now;
+        var strategy = _repairNowDb.Database.CreateExecutionStrategy();
         
-        _repairNowDb.Users.Update(user);
-        _repairNowDb.SaveChanges();
+        await strategy.ExecuteAsync(async () =>
+        {
+            await using (var transacction = await _repairNowDb.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    //User user = _repairNowDb.Users.Find(id);
+                    User user=await _repairNowDb.Users.FindAsync(id);
+                    user.DateUpdate=DateTime.Now;
+                    user = user_new;
+                    _repairNowDb.Users.Update(user);
+                    await _repairNowDb.SaveChangesAsync();
+                    await transacction.CommitAsync();
 
+
+                }
+                catch(Exception ex)
+                {
+                    await _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
+                    throw ex;
+                }
+            }
+        });
+        
+        _repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good
         return true;
-
     }
 
     public bool deleteUser(int id)

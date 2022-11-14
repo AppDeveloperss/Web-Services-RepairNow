@@ -6,6 +6,6 @@ public interface IUsersRepository
     User getUserById(int id);
     Task<Boolean> createUser(User user);
 
-    Boolean updateUser(int id, string name);
+    Task<Boolean> updateUser(int id, User user);
     Boolean deleteUser(int id);
 }

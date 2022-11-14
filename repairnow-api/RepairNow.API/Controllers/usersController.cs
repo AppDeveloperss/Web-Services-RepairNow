@@ -72,10 +72,26 @@ namespace RepairNowAPI.Controllers
 
         // PUT: api/users/5
         [HttpPut("{id}")]
-        public Boolean Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] UserResource userInput)
         {
-            var result = _usersDomain.updateUser(id, value);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var user = _mapper.Map<UserResource, User>(userInput);
+                user.id = id;
+                var result = await _usersDomain.updateUser(id, user);
+                return StatusCode(StatusCodes.Status200OK,"Usuario Actualizado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
+            
+
         }
 
         // DELETE: api/users/5

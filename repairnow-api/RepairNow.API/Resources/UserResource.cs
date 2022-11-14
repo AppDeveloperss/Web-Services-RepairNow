@@ -18,6 +18,5 @@ public class UserResource
     public string phone { get; set; }
     [Required]
     public string type { get; set; }
-    [Required]
     public string? plan { get; set; }
 }

@@ -27,9 +27,9 @@ public class UsersDomain:IUsersDomain
         return await _usersRepository.createUser(user);
     }
 
-    public bool updateUser(int id, string name)
+    public async Task<bool> updateUser(int id, User user)
     {
-        return _usersRepository.updateUser(id, name);
+        return await _usersRepository.updateUser(id, user);
     }
 
     public bool deleteUser(int id)
