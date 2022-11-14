@@ -32,8 +32,8 @@ public class UsersDomain:IUsersDomain
         return await _usersRepository.updateUser(id, user);
     }
 
-    public bool deleteUser(int id)
+    public async Task<bool> deleteUser(int id)
     {
-        return _usersRepository.deleteUser(id);
+        return await _usersRepository.deleteUser(id);
     }
 }

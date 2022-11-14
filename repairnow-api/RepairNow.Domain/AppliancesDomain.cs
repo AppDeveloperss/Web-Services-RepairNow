@@ -32,8 +32,8 @@ public class AppliancesDomain:IAppliancesDomain
         return await _appliancesRepository.updateAppliance(id, appliance);
     }
 
-    public bool deleteAppliance(int id)
+    public async Task<bool> deleteAppliance(int id)
     {
-        return _appliancesRepository.deleteAppliance(id);
+        return await _appliancesRepository.deleteAppliance(id);
     }
 }

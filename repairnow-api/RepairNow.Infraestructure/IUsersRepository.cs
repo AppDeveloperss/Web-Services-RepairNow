@@ -7,5 +7,5 @@ public interface IUsersRepository
     Task<Boolean> createUser(User user);
 
     Task<Boolean> updateUser(int id, User user);
-    Boolean deleteUser(int id);
+    Task<Boolean> deleteUser(int id);
 }

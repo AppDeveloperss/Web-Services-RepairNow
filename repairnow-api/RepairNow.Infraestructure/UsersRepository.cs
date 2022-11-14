@@ -143,18 +143,26 @@ public class UsersRepository:IUsersRepository
         //return true;
     }
 
-    public bool deleteUser(int id)
+    public async Task<bool> deleteUser(int id)
     {
-        User user = _repairNowDb.Users.Find(id);
-
-        //_repairNowDb.Users.Remove(user);
-        //_repairNowDb.SaveChanges();
-
-        user.isActive = false;
-        user.DateUpdate=DateTime.Now;
-        _repairNowDb.Users.Update(user);
-        _repairNowDb.SaveChanges();
-        return true;
         
+        using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                User user = await _repairNowDb.Users.FindAsync(id);
+                user.isActive = false;
+                user.DateUpdate=DateTime.Now;
+                _repairNowDb.Users.Update(user);
+                _repairNowDb.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                _repairNowDb.Database.RollbackTransactionAsync();
+            }
+        }
+        
+        _repairNowDb.Database.CommitTransactionAsync(); 
+        return true;
     }
 }

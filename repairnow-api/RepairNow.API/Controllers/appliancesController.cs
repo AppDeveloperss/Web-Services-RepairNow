@@ -79,10 +79,23 @@ namespace RepairNowAPI.Controllers
         
         // DELETE: api/appliances/5
         [HttpDelete("{id}")]
-        public Boolean Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _appliancesDomain.deleteAppliance(id);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var result = await _appliancesDomain.deleteAppliance(id);
+                return StatusCode(StatusCodes.Status200OK,"Usuario Actualizado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
+            
         }
         
         

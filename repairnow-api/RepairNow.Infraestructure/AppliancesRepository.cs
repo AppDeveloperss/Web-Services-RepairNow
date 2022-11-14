@@ -73,8 +73,26 @@ public class AppliancesRepository:IAppliancesRepository
         return true;
     }
 
-    public bool deleteAppliance(int id)
+    public async Task<bool> deleteAppliance(int id)
     {
-        throw new NotImplementedException();
+        
+        using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                Appliance appliance = await _repairNowDb.Appliances.FindAsync(id);
+                appliance.isActive = false;
+                appliance.DateUpdate=DateTime.Now;
+                _repairNowDb.Appliances.Update(appliance);
+                _repairNowDb.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                _repairNowDb.Database.RollbackTransactionAsync();
+            }
+        }
+        
+        _repairNowDb.Database.CommitTransactionAsync(); 
+        return true;
     }
 }

@@ -8,5 +8,5 @@ public interface IAppliancesDomain
     Appliance getApplianceById(int id);
     Task<Boolean> createAppliance(Appliance appliance);
     Task<Boolean> updateAppliance(int id, Appliance appliance);
-    Boolean deleteAppliance(int id);
+    Task<Boolean> deleteAppliance(int id);
 }
