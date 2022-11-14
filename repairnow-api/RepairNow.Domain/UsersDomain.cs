@@ -22,9 +22,9 @@ public class UsersDomain:IUsersDomain
         return _usersRepository.getUserById(id);
     }
 
-    public async Task<bool> createUser(string name)
+    public async Task<bool> createUser(User user)
     {
-        return await _usersRepository.createUser(name);
+        return await _usersRepository.createUser(user);
     }
 
     public bool updateUser(int id, string name)

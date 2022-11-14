@@ -47,23 +47,24 @@ public class UsersRepository:IUsersRepository
         //    .SingleOrDefault(user=>user.id==id)
     }
 
-    public async Task<bool> createUser(string name)
+    public async Task<bool> createUser(User user)
     {
-        User user = new User();
-        user.firstName = name;
+        //User user = new User();
+        //user.firstName = name;
         
         
         //TRANSACCION solo para insert, updated, delete , para lectura no hay transacciones
-        _repairNowDb.Database.BeginTransactionAsync();
-
-        try
+        using (var trasacction = _repairNowDb.Database.BeginTransactionAsync())
         {
-            _repairNowDb.Users.AddAsync(user);
-            _repairNowDb.SaveChangesAsync();
-        }
-        catch (Exception ex)
-        {
-            _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
+            try
+            {
+                _repairNowDb.Users.AddAsync(user);
+                _repairNowDb.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
+            }
         }
         
         _repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good

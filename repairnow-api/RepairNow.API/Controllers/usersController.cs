@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -14,7 +16,8 @@ namespace RepairNowAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+    [Produces(MediaTypeNames.Application.Json)]
+
     public class usersController : ControllerBase
     {
         //Instanciamos una variable en la interfaz
@@ -44,24 +47,27 @@ namespace RepairNowAPI.Controllers
 
         // POST: api/users
         [HttpPost]
-        public async Task<Boolean> Post([FromBody] UserResource userInput)
+        [ProducesResponseType(typeof(IActionResult),201)]
+        public async Task<IActionResult> Post([FromBody] UserResource userInput)
         {
-            //var user = new User()
-            //{
-            //    firstName = userInput.firstName,
-            //    lastName = userInput.lastName,
-            //    email = userInput.email,
-            //    password = userInput.password,
-            //    address = userInput.address,
-            //    phone = userInput.phone,
-            //    type = userInput.type,
-            //    plan = userInput.plan
-            //};
 
-            var user = _mapper.Map<UserResource, User>(userInput);
-            string User = "UserExample";
-            var result = await _usersDomain.createUser(User);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var user = _mapper.Map<UserResource, User>(userInput);
+                var result = await _usersDomain.createUser(user);
+            
+                return StatusCode(StatusCodes.Status201Created,"Usuario Creado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
+
         }
 
         // PUT: api/users/5
