@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\RepairNow.Infraestructure\RepairNow.Infraestructure.csproj" />
+      <ProjectReference Include="..\RepairNow.Shared\RepairNow.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>

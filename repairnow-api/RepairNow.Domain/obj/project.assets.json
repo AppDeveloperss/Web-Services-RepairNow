@@ -2891,6 +2891,16 @@
         "runtime": {
           "bin/placeholder/RepairNow.Infraestructure.dll": {}
         }
+      },
+      "RepairNow.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/RepairNow.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepairNow.Shared.dll": {}
+        }
       }
     }
   },
@@ -8504,13 +8514,19 @@
       "type": "project",
       "path": "../RepairNow.Infraestructure/RepairNow.Infraestructure.csproj",
       "msbuildProject": "../RepairNow.Infraestructure/RepairNow.Infraestructure.csproj"
+    },
+    "RepairNow.Shared/1.0.0": {
+      "type": "project",
+      "path": "../RepairNow.Shared/RepairNow.Shared.csproj",
+      "msbuildProject": "../RepairNow.Shared/RepairNow.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "AutoMapper >= 12.0.0",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
-      "RepairNow.Infraestructure >= 1.0.0"
+      "RepairNow.Infraestructure >= 1.0.0",
+      "RepairNow.Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -8542,6 +8558,9 @@
           "projectReferences": {
             "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj": {
               "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj"
+            },
+            "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Shared\\RepairNow.Shared.csproj": {
+              "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Shared\\RepairNow.Shared.csproj"
             }
           }
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Mime;
+using System.Security;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using RepairNow.Domain;
 using RepairNow.Infraestructure;
 using RepairNowAPI.Resources;
+using RepairNowAPI.Response;
 
 namespace RepairNowAPI.Controllers
 {
@@ -54,11 +56,29 @@ namespace RepairNowAPI.Controllers
                 {
                     return BadRequest("Error de Formato");
                 }
-            
+
                 var user = _mapper.Map<UserResource, User>(userInput);
+                user.isActive = true;
                 var result = await _usersDomain.createUser(user);
-            
-                return StatusCode(StatusCodes.Status201Created,"Usuario Creado");
+
+                var response = new UserResponse()
+                {
+                    Success = true, Message = "Creación realizada con éxito"
+                };
+
+                return StatusCode(StatusCodes.Status201Created, "Usuario Creado");
+            }
+            catch (ArgumentException argumentException)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, "Error con los valores de argumento");
+            }
+            catch (InvalidCastException invalidCastException)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, "Error interno al castear");
+            }
+            catch (VerificationException verificationException)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, verificationException.Message);
             }
             catch(Exception ex)
             {

@@ -35,7 +35,12 @@ public class UsersRepository:IUsersRepository
             {
                 _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
             }
+            finally
+            {
+                //_repairNowDb.DisposeAsync();
+            }
         }
+
         
         _repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good
         return true;
