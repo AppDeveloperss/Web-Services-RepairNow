@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Net.Mime;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RepairNow.Domain;
 using RepairNow.Infraestructure;
@@ -8,16 +9,17 @@ namespace RepairNowAPI.Controllers
 {
     [Route("api/appointments")]
     [ApiController]
+    [Produces(MediaTypeNames.Application.Json)]
     
     public class AppointmentsController:ControllerBase
     {
         private IAppointmentsDomain _appointmentsDomain;
         private IMapper _mapper;
-        
-        public AppointmentsController(IAppointmentsDomain appliancesDomain, IMapper _mapper)
+
+        public AppointmentsController(IAppointmentsDomain appliancesDomain, IMapper mapper)
         {
             _appointmentsDomain = appliancesDomain;
-            this._mapper=_mapper;
+            _mapper=mapper;
         }
         
         // GET: api/appointments
@@ -34,31 +36,68 @@ namespace RepairNowAPI.Controllers
             return _appointmentsDomain.getAppointmentById(id);
         }
         
-        // POST: api/appointments
         [HttpPost]
-        public async Task<Boolean> Post([FromBody] AppointmentResource appointmentResource)
+        [ProducesResponseType(typeof(IActionResult),201)]
+        public async Task<IActionResult> Post([FromBody] AppointmentResource appointmentInput)
         {
-            var user = _mapper.Map<AppointmentResource, Appointment>(appointmentResource);
-            string xd = "aea";
-            var result = await _appointmentsDomain.createAppointment(xd);
-            return result;
+            
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest("Error de Formato");
+                var appointment = _mapper.Map<AppointmentResource, Appointment>(appointmentInput);
+                var result = await _appointmentsDomain.createAppointment(appointment);
+            
+                return StatusCode(StatusCodes.Status201Created, "Appointment Creado");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error al procesar");
+            }
+            
         }
         
         // PUT: api/appointments/5
         [HttpPut("{id}")]
-        public Boolean Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] AppointmentResource appointmentInput)
         {
-            var result = _appointmentsDomain.updateAppointment(id, value);
-            return result;
+            
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var appointment = _mapper.Map<AppointmentResource, Appointment>(appointmentInput);
+                appointment.id = id;
+                var result = _appointmentsDomain.updateAppointment(id, appointment);
+                return StatusCode(StatusCodes.Status200OK,"Appointment Actualizado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
         }
         
         
         // DELETE: api/appointments/5
         [HttpDelete("{id}")]
-        public Boolean Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _appointmentsDomain.deleteAppointment(id);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var result = await _appointmentsDomain.deleteAppointment(id);
+                return StatusCode(StatusCodes.Status200OK,"Appointment Eliminado Satisfactoriamente");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
         }
 
     }

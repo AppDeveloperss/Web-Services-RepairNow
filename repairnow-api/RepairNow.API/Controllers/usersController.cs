@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -14,14 +16,12 @@ namespace RepairNowAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+    [Produces(MediaTypeNames.Application.Json)]
+
     public class usersController : ControllerBase
     {
-        //Instanciamos una variable en la interfaz
         private IUsersDomain _usersDomain;
-
         private IMapper _mapper;
-        //luego en el constructor de esta clase le pasamos ese parametro
         public usersController(IUsersDomain usersDomain, IMapper mapper)
         {
             _usersDomain = usersDomain;
@@ -44,40 +44,72 @@ namespace RepairNowAPI.Controllers
 
         // POST: api/users
         [HttpPost]
-        public async Task<Boolean> Post([FromBody] UserResource userInput)
+        [ProducesResponseType(typeof(IActionResult),201)]
+        public async Task<IActionResult> Post([FromBody] UserResource userInput)
         {
-            //var user = new User()
-            //{
-            //    firstName = userInput.firstName,
-            //    lastName = userInput.lastName,
-            //    email = userInput.email,
-            //    password = userInput.password,
-            //    address = userInput.address,
-            //    phone = userInput.phone,
-            //    type = userInput.type,
-            //    plan = userInput.plan
-            //};
 
-            var user = _mapper.Map<UserResource, User>(userInput);
-            string User = "UserExample";
-            var result = await _usersDomain.createUser(User);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var user = _mapper.Map<UserResource, User>(userInput);
+                var result = await _usersDomain.createUser(user);
+            
+                return StatusCode(StatusCodes.Status201Created,"Usuario Creado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
+
         }
 
         // PUT: api/users/5
         [HttpPut("{id}")]
-        public Boolean Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] UserResource userInput)
         {
-            var result = _usersDomain.updateUser(id, value);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var user = _mapper.Map<UserResource, User>(userInput);
+                user.id = id;
+                var result = await _usersDomain.updateUser(id, user);
+                return StatusCode(StatusCodes.Status200OK,"Usuario Actualizado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
+            
+
         }
 
         // DELETE: api/users/5
         [HttpDelete("{id}")]
-        public Boolean Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _usersDomain.deleteUser(id);
-            return result;
+            
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+                
+                var result = await _usersDomain.deleteUser(id);
+                return StatusCode(StatusCodes.Status200OK,"Usuario Actualizado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
         }
     };
 }
