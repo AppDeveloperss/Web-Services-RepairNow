@@ -90,7 +90,7 @@ namespace RepairNowAPI.Controllers
                 var appointment = _mapper.Map<AppointmentResource, Appointment>(appointmentInput);
                 var result = _appointmentsDomain.updateAppointment(id, appointment);
                 appointment.id = id;
-                return StatusCode(StatusCodes.Status200OK,"Usuario Actualizado");
+                return StatusCode(StatusCodes.Status200OK,"Appointment Actualizado");
             }
             catch(Exception ex)
             {
@@ -111,7 +111,7 @@ namespace RepairNowAPI.Controllers
                 }
             
                 var result = await _appointmentsDomain.deleteAppointment(id);
-                return StatusCode(StatusCodes.Status200OK,"Usuario Eliminado Satisfactoriamente");
+                return StatusCode(StatusCodes.Status200OK,"Appointment Eliminado Satisfactoriamente");
             }
             catch(Exception ex)
             {

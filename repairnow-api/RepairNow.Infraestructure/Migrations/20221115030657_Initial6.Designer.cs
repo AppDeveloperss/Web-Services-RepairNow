@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RepairNow.Infraestructure.Context;
 
@@ -10,9 +11,10 @@ using RepairNow.Infraestructure.Context;
 namespace RepairNow.Infraestructure.Migrations
 {
     [DbContext(typeof(RepairNowDB))]
-    partial class RepairNowDBModelSnapshot : ModelSnapshot
+    [Migration("20221115030657_Initial6")]
+    partial class Initial6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 14, 23, 24, 57, 606, DateTimeKind.Local).AddTicks(5195));
+                        .HasDefaultValue(new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(9062));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
@@ -79,13 +81,19 @@ namespace RepairNow.Infraestructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("Applianceid")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 14, 23, 24, 57, 606, DateTimeKind.Local).AddTicks(4369));
+                        .HasDefaultValue(new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(8403));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Userid")
+                        .HasColumnType("int");
 
                     b.Property<int>("applianceModelId")
                         .HasColumnType("int");
@@ -112,6 +120,10 @@ namespace RepairNow.Infraestructure.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("Applianceid");
+
+                    b.HasIndex("Userid");
+
                     b.ToTable("Appointments", (string)null);
                 });
 
@@ -124,7 +136,7 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 14, 23, 24, 57, 606, DateTimeKind.Local).AddTicks(3322));
+                        .HasDefaultValue(new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(7804));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
@@ -172,7 +184,7 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 14, 23, 24, 57, 606, DateTimeKind.Local).AddTicks(2060));
+                        .HasDefaultValue(new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(7073));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
@@ -217,6 +229,25 @@ namespace RepairNow.Infraestructure.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Users", (string)null);
+                });
+
+            modelBuilder.Entity("RepairNow.Infraestructure.Appointment", b =>
+                {
+                    b.HasOne("RepairNow.Infraestructure.Appliance", "Appliance")
+                        .WithMany()
+                        .HasForeignKey("Applianceid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RepairNow.Infraestructure.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Userid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Appliance");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("RepairNow.Infraestructure.Report", b =>

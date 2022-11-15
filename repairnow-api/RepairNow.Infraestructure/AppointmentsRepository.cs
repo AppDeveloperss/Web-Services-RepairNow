@@ -1,4 +1,5 @@
-﻿using RepairNow.Infraestructure.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using RepairNow.Infraestructure.Context;
 
 namespace RepairNow.Infraestructure;
 
@@ -29,7 +30,7 @@ public class AppointmentsRepository: IAppointmentsRepository
             try
             {
                 _repairNowDb.Appointments.AddAsync(appointment);
-                _repairNowDb.SaveChangesAsync();
+                _repairNowDb.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -47,10 +48,9 @@ public class AppointmentsRepository: IAppointmentsRepository
             try
             {
                 //User user = _repairNowDb.Users.Find(id);
-                Appointment appointment = await _repairNowDb.Appointments.FindAsync(id);
-
-                appointment.DateUpdate = DateTime.Now;
-
+                Appointment appointment=await _repairNowDb.Appointments.FindAsync(id);
+               
+                appointment.DateUpdate=DateTime.Now;
                 appointment.dateAttention = new_appointment.dateAttention;
                 appointment.dateReserve = new_appointment.dateReserve;
                 appointment.hour = new_appointment.hour;
@@ -59,14 +59,14 @@ public class AppointmentsRepository: IAppointmentsRepository
 
                 _repairNowDb.Appointments.Update(appointment);
                 _repairNowDb.SaveChanges();
+                //await transacction.CommitAsync();
             }
             catch (Exception ex)
             {
-                _repairNowDb.Database.RollbackTransactionAsync();
+                _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
             }
         }
-        
-        _repairNowDb.Database.CommitTransactionAsync(); 
+        _repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good
         return true;
     }
 
