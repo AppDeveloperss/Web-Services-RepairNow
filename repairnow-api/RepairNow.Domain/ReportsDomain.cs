@@ -21,18 +21,18 @@ public class ReportsDomain:IReportsDomain
         return _reportsRepository.getReportById(id);
     }
 
-    public Task<bool> createReport(string name)
+    public async Task<bool> createReport(Report report)
     {
-        return _reportsRepository.createReport(name);
+        return await _reportsRepository.createReport(report);
     }
 
-    public bool updateReport(int id, string name)
+    public async Task<bool> updateReport(int id, Report report)
     {
-        return _reportsRepository.updateReport(id, name);
+        return await _reportsRepository.updateReport(id, report);
     }
 
-    public bool deleteReport(int id)
+    public async Task<bool> deleteReport(int id)
     {
-        return _reportsRepository.deleteReport(id);
+        return await _reportsRepository.deleteReport(id);
     }
 }

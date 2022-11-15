@@ -1,4 +1,5 @@
-﻿using RepairNow.Infraestructure.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using RepairNow.Infraestructure.Context;
 
 namespace RepairNow.Infraestructure;
 
@@ -20,53 +21,93 @@ public class ReportsRepository:IReportsRepository
     {
         return _repairNowDb.Reports.Find(id);
     }
-
-    public async Task<bool> createReport(string name)
-    {
-        Report report = new Report();
-        report.diagnosis = name;
-        
-        //TRANSACCION solo para insert, updated, delete , para lectura no hay transacciones
-        _repairNowDb.Database.BeginTransactionAsync();
-
-        try
+    
+    //public async Task<bool> createReport(Report report)
+    //{
+    //    
+    //    using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
+    //    {
+    //        try
+    //        {
+    //            await _repairNowDb.Reports.AddAsync(report);
+    //            _repairNowDb.SaveChanges();
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            _repairNowDb.Database.RollbackTransactionAsync();
+    //        }
+    //    }
+    //    _repairNowDb.Database.CommitTransactionAsync();
+    //    return true;
+    //}
+    
+    public async Task<bool> createReport(Report report)
+    {        
+        var strategy = _repairNowDb.Database.CreateExecutionStrategy();
+        await strategy.ExecuteAsync(async () =>
         {
-            _repairNowDb.Reports.AddAsync(report);
-            _repairNowDb.SaveChangesAsync();
-        }
-        catch (Exception ex)
-        {
-            _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
-        }
-        
-        _repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good
+            await using (var transacction = await _repairNowDb.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    await _repairNowDb.Reports.AddAsync(report);
+                    await _repairNowDb.SaveChangesAsync();
+                    await transacction.CommitAsync();
+                }
+                catch (Exception ex)
+                {
+                    await _repairNowDb.Database.RollbackTransactionAsync();
+                }
+            }
+        });
         return true;
     }
-
-    public bool updateReport(int id, string name)
+    public async Task<bool> updateReport(int id, Report new_report)
     {
-        Report report = _repairNowDb.Reports.Find(id);
+        using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                Report report = await _repairNowDb.Reports.FindAsync(id);
 
-        report.diagnosis= name;
-        report.DateUpdate=DateTime.Now;
-        
-        _repairNowDb.Reports.Update(report);
-        _repairNowDb.SaveChanges();
+                report.DateUpdate = DateTime.Now;
 
+                report.observation = new_report.observation;
+                report.diagnosis = new_report.diagnosis;
+                report.repairDescription = new_report.repairDescription;
+                report.date = new_report.date;
+                report.technicianId = new_report.id;
+
+                _repairNowDb.Reports.Update(report);
+                _repairNowDb.SaveChanges();
+                await _repairNowDb.Database.CommitTransactionAsync();
+            }
+            catch (Exception ex)
+            {
+                _repairNowDb.Database.RollbackTransactionAsync();
+            }
+        }
         return true;
     }
-
-    public bool deleteReport(int id)
+    public async Task<bool> deleteReport(int id)
     {
-        Report report = _repairNowDb.Reports.Find(id);
-
-        //_repairNowDb.Users.Remove(user);
-        //_repairNowDb.SaveChanges();
-
-        report.isActive = false;
-        report.DateUpdate=DateTime.Now;
-        _repairNowDb.Reports.Update(report);
-        _repairNowDb.SaveChanges();
+        using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                Report report = await _repairNowDb.Reports.FindAsync(id);
+                report.isActive = false;
+                report.DateUpdate=DateTime.Now;
+                _repairNowDb.Reports.Update(report);
+                _repairNowDb.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                _repairNowDb.Database.RollbackTransactionAsync();
+            }
+        }
+        
+        _repairNowDb.Database.CommitTransactionAsync(); 
         return true;
     }
 }

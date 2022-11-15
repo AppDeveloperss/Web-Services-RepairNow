@@ -64,11 +64,11 @@ namespace RepairNowAPI.Controllers
                 {
                     return BadRequest("Error de Formato");
                 }
-            
+
                 var appliance = _mapper.Map<ApplianceResource, Appliance>(applianceInput);
-                var result = _appliancesDomain.updateAppliance(id, appliance);
                 appliance.id = id;
-                return StatusCode(StatusCodes.Status200OK,"Usuario Actualizado");
+                var result = _appliancesDomain.updateAppliance(id, appliance);
+                return StatusCode(StatusCodes.Status200OK,"Appliance Actualizado");
             }
             catch(Exception ex)
             {
@@ -89,7 +89,7 @@ namespace RepairNowAPI.Controllers
                 }
             
                 var result = await _appliancesDomain.deleteAppliance(id);
-                return StatusCode(StatusCodes.Status200OK,"Usuario Eliminado Satisfactoriamente");
+                return StatusCode(StatusCodes.Status200OK,"Appliance Eliminado Satisfactoriamente");
             }
             catch(Exception ex)
             {

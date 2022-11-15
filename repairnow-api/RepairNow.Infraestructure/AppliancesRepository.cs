@@ -27,16 +27,16 @@ public class AppliancesRepository:IAppliancesRepository
         {
             try
             {
-                _repairNowDb.Appliances.AddAsync(appliance);
+                await _repairNowDb.Appliances.AddAsync(appliance);
                 _repairNowDb.SaveChanges();
             }
             catch (Exception ex)
             {
-                _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
+                _repairNowDb.Database.RollbackTransactionAsync();
             }
         }
         
-        _repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good
+        _repairNowDb.Database.CommitTransactionAsync(); 
         return true;
     }
 

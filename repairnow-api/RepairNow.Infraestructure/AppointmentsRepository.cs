@@ -10,8 +10,6 @@ public class AppointmentsRepository: IAppointmentsRepository
     {
         _repairNowDb = repairNowDb;
     }
-
-
     public List<Appointment> getAll()
     {
         return _repairNowDb.Appointments.Where(appointment => appointment.isActive).ToList();
@@ -29,7 +27,7 @@ public class AppointmentsRepository: IAppointmentsRepository
         {
             try
             {
-                _repairNowDb.Appointments.AddAsync(appointment);
+                await _repairNowDb.Appointments.AddAsync(appointment);
                 _repairNowDb.SaveChanges();
             }
             catch (Exception ex)
@@ -59,14 +57,13 @@ public class AppointmentsRepository: IAppointmentsRepository
 
                 _repairNowDb.Appointments.Update(appointment);
                 _repairNowDb.SaveChanges();
-                //await transacction.CommitAsync();
             }
             catch (Exception ex)
             {
-                _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
+                _repairNowDb.Database.RollbackTransactionAsync();
             }
         }
-        _repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good
+        _repairNowDb.Database.CommitTransactionAsync();
         return true;
     }
 

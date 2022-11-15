@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RepairNow.Infraestructure.Context;
 
@@ -10,9 +11,10 @@ using RepairNow.Infraestructure.Context;
 namespace RepairNow.Infraestructure.Migrations
 {
     [DbContext(typeof(RepairNowDB))]
-    partial class RepairNowDBModelSnapshot : ModelSnapshot
+    [Migration("20221115151454_Initial9")]
+    partial class Initial9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 15, 10, 55, 9, 677, DateTimeKind.Local).AddTicks(7014));
+                        .HasDefaultValue(new DateTime(2022, 11, 15, 10, 14, 54, 202, DateTimeKind.Local).AddTicks(1138));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
@@ -82,7 +84,7 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 15, 10, 55, 9, 677, DateTimeKind.Local).AddTicks(6457));
+                        .HasDefaultValue(new DateTime(2022, 11, 15, 10, 14, 54, 202, DateTimeKind.Local).AddTicks(570));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
@@ -124,10 +126,13 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 15, 10, 55, 9, 677, DateTimeKind.Local).AddTicks(5886));
+                        .HasDefaultValue(new DateTime(2022, 11, 15, 10, 14, 54, 201, DateTimeKind.Local).AddTicks(9979));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Userid")
+                        .HasColumnType("int");
 
                     b.Property<string>("date")
                         .IsRequired()
@@ -155,6 +160,8 @@ namespace RepairNow.Infraestructure.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("Userid");
+
                     b.ToTable("Reports", (string)null);
                 });
 
@@ -167,7 +174,7 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 15, 10, 55, 9, 677, DateTimeKind.Local).AddTicks(5034));
+                        .HasDefaultValue(new DateTime(2022, 11, 15, 10, 14, 54, 201, DateTimeKind.Local).AddTicks(9257));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
@@ -212,6 +219,17 @@ namespace RepairNow.Infraestructure.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Users", (string)null);
+                });
+
+            modelBuilder.Entity("RepairNow.Infraestructure.Report", b =>
+                {
+                    b.HasOne("RepairNow.Infraestructure.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Userid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

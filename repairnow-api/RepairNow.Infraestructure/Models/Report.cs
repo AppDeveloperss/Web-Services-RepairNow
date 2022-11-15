@@ -8,7 +8,5 @@ public class Report: BaseModel
     public string repairDescription { get; set; }
     public string date { get; set; }
     public int technicianId { get; set; }
-    public User User { get; set; }
-    
 
 }

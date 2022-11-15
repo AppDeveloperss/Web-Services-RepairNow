@@ -36,25 +36,6 @@ namespace RepairNowAPI.Controllers
             return _appointmentsDomain.getAppointmentById(id);
         }
         
-        
-        //[HttpPost]
-        //[ProducesResponseType(typeof(IActionResult),201)]
-        //public async Task<IActionResult> Post([FromBody] ApplianceResource applianceInput)
-        //{
-        //    try
-        //    {
-        //        if (!ModelState.IsValid) return BadRequest("Error de Formato");
-        //        var appliance = _mapper.Map<ApplianceResource, Appliance>(applianceInput);
-        //        var result = await _appliancesDomain.createAppliance(appliance);
-//
-        //        return StatusCode(StatusCodes.Status201Created, "Appliance Creado");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, "Error al procesar");
-        //    }
-        //}
-        // POST: api/appointments
         [HttpPost]
         [ProducesResponseType(typeof(IActionResult),201)]
         public async Task<IActionResult> Post([FromBody] AppointmentResource appointmentInput)
@@ -88,8 +69,8 @@ namespace RepairNowAPI.Controllers
                 }
             
                 var appointment = _mapper.Map<AppointmentResource, Appointment>(appointmentInput);
-                var result = _appointmentsDomain.updateAppointment(id, appointment);
                 appointment.id = id;
+                var result = _appointmentsDomain.updateAppointment(id, appointment);
                 return StatusCode(StatusCodes.Status200OK,"Appointment Actualizado");
             }
             catch(Exception ex)
