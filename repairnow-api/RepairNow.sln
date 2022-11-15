@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairNow.Infraestructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairNow.Shared", "RepairNow.Shared\RepairNow.Shared.csproj", "{A028871F-A630-4113-81CF-6D391EF518FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairNow.Domain.Test", "RepairNow.Domain.Test\RepairNow.Domain.Test.csproj", "{1858E26C-5084-492D-BF9D-6E24DF1F8FB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{A028871F-A630-4113-81CF-6D391EF518FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A028871F-A630-4113-81CF-6D391EF518FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A028871F-A630-4113-81CF-6D391EF518FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1858E26C-5084-492D-BF9D-6E24DF1F8FB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1858E26C-5084-492D-BF9D-6E24DF1F8FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1858E26C-5084-492D-BF9D-6E24DF1F8FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1858E26C-5084-492D-BF9D-6E24DF1F8FB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
