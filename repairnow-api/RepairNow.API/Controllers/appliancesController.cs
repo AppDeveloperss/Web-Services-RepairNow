@@ -89,7 +89,7 @@ namespace RepairNowAPI.Controllers
                 }
             
                 var result = await _appliancesDomain.deleteAppliance(id);
-                return StatusCode(StatusCodes.Status200OK,"Usuario Actualizado");
+                return StatusCode(StatusCodes.Status200OK,"Usuario Eliminado Satisfactoriamente");
             }
             catch(Exception ex)
             {
