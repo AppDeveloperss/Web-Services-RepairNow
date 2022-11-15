@@ -8519,11 +8519,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow_api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj",
       "projectName": "RepairNow.Domain",
-      "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj",
+      "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow_api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj",
       "packagesPath": "C:\\Users\\axekr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Domain\\obj\\",
+      "outputPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow_api\\repairnow-api\\RepairNow.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\axekr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8540,8 +8540,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj": {
-              "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj"
+            "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow_api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj": {
+              "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow_api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj"
             }
           }
         }

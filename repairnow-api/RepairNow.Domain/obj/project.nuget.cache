@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hxwk7Z6Ygz8e5+0p3Iv2x/5nQMXC7hLF6eq4AUWQwdThYr4vQnJQcJPzt0RMqo7rwzyISBw3XnfeQG2xELxCTA==",
+  "dgSpecHash": "LTwRlfKj3mpSfy568gwFVbhNL8jHuYmwsZ1iunuVbGnuflYaJBi/UrSPjS4kPfAA1Vvm2J7FAXPMglh4iRhuWA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj",
+  "projectFilePath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow_api\\repairnow-api\\RepairNow.Domain\\RepairNow.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\axekr\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\axekr\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

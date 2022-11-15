@@ -8569,11 +8569,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj",
+      "projectUniqueName": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow_api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj",
       "projectName": "RepairNow.Infraestructure",
-      "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj",
+      "projectPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow_api\\repairnow-api\\RepairNow.Infraestructure\\RepairNow.Infraestructure.csproj",
       "packagesPath": "C:\\Users\\axekr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.Infraestructure\\obj\\",
+      "outputPath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow_api\\repairnow-api\\RepairNow.Infraestructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\axekr\\AppData\\Roaming\\NuGet\\NuGet.Config",
