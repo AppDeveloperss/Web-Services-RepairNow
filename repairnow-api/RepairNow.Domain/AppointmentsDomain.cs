@@ -23,14 +23,14 @@ public class AppointmentsDomain:IAppointmentsDomain
         return _appointmentsRepository.getAppointmentById(id);
     }
 
-    public Task<bool> createAppointment(string name)
+    public async Task<bool> createAppointment(Appointment appointment)
     {
-        return _appointmentsRepository.createAppointment(name);
+        return await _appointmentsRepository.createAppointment(appointment);
     }
 
-    public bool updateAppointment(int id, string name)
+    public async Task<bool> updateAppointment(int id, Appointment appointment)
     {
-        return _appointmentsRepository.updateAppointment(id, name);
+        return await _appointmentsRepository.updateAppointment(id, appointment);
     }
 
     public bool deleteAppointment(int id)

@@ -19,34 +19,55 @@ public class AppointmentsRepository: IAppointmentsRepository
     public Appointment getAppointmentById(int id)
     {
         return _repairNowDb.Appointments.Find(id);
-        //Single or default devuelve solo un elemento mientras que el ToList devuelve una lista
-        //  return _repairNowDb.Users
-        //    .Include(user => user.Tutorials)
-        //    .SingleOrDefault(user=>user.id==id)
     }
 
-    public async Task<bool> createAppointment(string name)
+    public async Task<bool> createAppointment(Appointment appointment)
     {
-        Appointment appointment = new Appointment();
-        appointment.hour=name;
         
-        _repairNowDb.Database.BeginTransactionAsync();
-        try
+        using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
         {
-            _repairNowDb.Appointments.AddAsync(appointment);
-            _repairNowDb.SaveChangesAsync();
+            try
+            {
+                _repairNowDb.Appointments.AddAsync(appointment);
+                _repairNowDb.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _repairNowDb.Database.RollbackTransactionAsync();
+            }
         }
-        catch (Exception ex)
-        {
-            _repairNowDb.Database.RollbackTransactionAsync();//Si pasa algo malo entonces lo anula(hace rollback)
-        }
-        _repairNowDb.Database.CommitTransactionAsync(); //Si no pasa algo malo entonces good
+        _repairNowDb.Database.CommitTransactionAsync(); 
         return true;
     }
 
-    public bool updateAppointment(int id, string name)
+    public async Task<bool> updateAppointment(int id, Appointment new_appointment)
     {
-        throw new NotImplementedException();
+        using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                //User user = _repairNowDb.Users.Find(id);
+                Appointment appointment = await _repairNowDb.Appointments.FindAsync(id);
+
+                appointment.DateUpdate = DateTime.Now;
+
+                appointment.dateAttention = new_appointment.dateAttention;
+                appointment.dateReserve = new_appointment.dateReserve;
+                appointment.hour = new_appointment.hour;
+                appointment.clientId = new_appointment.clientId;
+                appointment.applianceModelId = new_appointment.applianceModelId;
+
+                _repairNowDb.Appointments.Update(appointment);
+                _repairNowDb.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                _repairNowDb.Database.RollbackTransactionAsync();
+            }
+        }
+        
+        _repairNowDb.Database.CommitTransactionAsync(); 
+        return true;
     }
     
     public bool updateAppointment(int id)
