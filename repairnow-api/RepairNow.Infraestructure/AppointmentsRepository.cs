@@ -69,14 +69,26 @@ public class AppointmentsRepository: IAppointmentsRepository
         _repairNowDb.Database.CommitTransactionAsync(); 
         return true;
     }
-    
-    public bool updateAppointment(int id)
+
+    public async Task<bool> deleteAppointment(int id)
     {
-        throw new NotImplementedException();
-    }
-    
-    public bool deleteAppointment(int id)
-    {
-        throw new NotImplementedException();
+        using (var transacction = _repairNowDb.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                Appointment appointment = await _repairNowDb.Appointments.FindAsync(id);
+                appointment.isActive = false;
+                appointment.DateUpdate=DateTime.Now;
+                _repairNowDb.Appointments.Update(appointment);
+                _repairNowDb.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                _repairNowDb.Database.RollbackTransactionAsync();
+            }
+        }
+        
+        _repairNowDb.Database.CommitTransactionAsync(); 
+        return true;
     }
 }

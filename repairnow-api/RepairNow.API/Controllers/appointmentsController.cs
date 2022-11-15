@@ -101,10 +101,22 @@ namespace RepairNowAPI.Controllers
         
         // DELETE: api/appointments/5
         [HttpDelete("{id}")]
-        public Boolean Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _appointmentsDomain.deleteAppointment(id);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var result = await _appointmentsDomain.deleteAppointment(id);
+                return StatusCode(StatusCodes.Status200OK,"Usuario Eliminado Satisfactoriamente");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
         }
 
     }

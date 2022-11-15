@@ -6,5 +6,5 @@ public interface IAppointmentsRepository
     Appointment getAppointmentById(int id);
     Task<Boolean> createAppointment(Appointment appointment);
     Task<Boolean> updateAppointment(int id, Appointment appointment);
-    Boolean deleteAppointment(int id);
+    Task<Boolean> deleteAppointment(int id);
 }

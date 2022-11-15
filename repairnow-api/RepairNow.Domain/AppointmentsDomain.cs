@@ -33,8 +33,8 @@ public class AppointmentsDomain:IAppointmentsDomain
         return await _appointmentsRepository.updateAppointment(id, appointment);
     }
 
-    public bool deleteAppointment(int id)
+    public async Task<bool>deleteAppointment(int id)
     {
-        return _appointmentsRepository.deleteAppointment(id);
+        return await _appointmentsRepository.deleteAppointment(id);
     }
 }
