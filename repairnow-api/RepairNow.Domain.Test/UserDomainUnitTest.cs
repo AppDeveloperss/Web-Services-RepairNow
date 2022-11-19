@@ -10,30 +10,13 @@ public class Tests
     public void Setup()
     {
     }
-
-    [Theory]
-    [InlineData(1,1,1)]
-    [InlineData(2,2,4)]
-    [InlineData(3,3,9)]
-    public void Mul_ReturnMul(int number1,int number2,int expectedValue)
-    {
-        var testableDomain = new TestableDomain();
-        var returnValue=testableDomain.multiply(number1, number2);
-        Assert.Equal(expectedValue,returnValue);
-        //Assert.That(result,is.Equal(expected));
-    }
-
+    
     [Fact]
     public void CreateUser_ReturnTrue()
     {
-        ///AAA
-        //Arrange
-        //Mock al ICategoryRepository, una instancia falsa(un mock)
         var usersRepository = new Mock<IUsersRepository>();
         usersRepository.Setup(usersRepository => usersRepository.createUser(It.IsAny<User>())).Returns(Task.FromResult(true));
 
-        //var expectedValue = Task.FromResult(true);
-        
         var user = new User()
         {
             firstName="Alonso",
@@ -46,16 +29,8 @@ public class Tests
             plan= "monthly"
         };
         var userDomain = new UsersDomain(usersRepository.Object);
-        
-        //Act
-
         var result = userDomain.createUser(user);
-        
-        //Assert
-        //Assert.Equal(expectedValue,result);
         Assert.True(result.Result);
-
-
     }
     
     [Fact]
