@@ -11,38 +11,6 @@ public class Tests
     {
     }
 
-    //[Test]
-    //public void Sum_ReturnSum()
-    //{
-    //    ///AAA
-    //    int number1 = 10;
-    //    int number2 = 20;
-    //    var testableDomain = new TestableDomain();
-//
-    //    var valorEsperado = 30;
-    //    
-    //    //Act
-    //    var returnValue=testableDomain.sum(number1, number2);
-//
-    //    //Asert
-    //    Assert.AreEqual(valorEsperado,returnValue);
-    //    
-//
-    //    ////arrange-> Preparar los datos
-    //    //var userDomain = new UsersDomain();
-    //    //var user = new User();
-    //    //user.email = "emaildepruebahotmail.com";
-    //    //
-    //    ////act-> Ejecutamos funcion
-    //    //var result = userDomain.createUser(user);
-    //    //
-    //    //
-    //    ////assert.> Comparamos
-    //    //Assert.Equals(Exception, result);
-//
-    //    //Assert.Pass();
-    //}
-
     [Theory]
     [InlineData(1,1,1)]
     [InlineData(2,2,4)]
