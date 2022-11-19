@@ -10,7 +10,8 @@
         "dependencies": {
           "AutoMapper": "12.0.0",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.0",
-          "RepairNow.Infraestructure": "1.0.0"
+          "RepairNow.Infraestructure": "1.0.0",
+          "RepairNow.Shared": "1.0.0"
         },
         "runtime": {
           "RepairNow.Domain.dll": {}
@@ -2135,6 +2136,11 @@
         "runtime": {
           "RepairNow.Infraestructure.dll": {}
         }
+      },
+      "RepairNow.Shared/1.0.0": {
+        "runtime": {
+          "RepairNow.Shared.dll": {}
+        }
       }
     }
   },
@@ -3258,6 +3264,11 @@
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
     "RepairNow.Infraestructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RepairNow.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

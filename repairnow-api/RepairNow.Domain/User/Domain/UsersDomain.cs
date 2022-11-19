@@ -27,12 +27,38 @@ public class UsersDomain:IUsersDomain
     {
         if (!user.email.Contains((char)Constans.valueContainedsEmail))
         {
-            throw new VerificationException("Email no válido");
+            throw new VerificationException("Invalid Email");
         }
+
+        if (user.phone.Length != 9)
+        {
+            throw new VerificationException("Invalid Phone Number");
+        }
+
+        if (user.type == "technician" && user.plan != null)
+        {
+            throw new VerificationException("Technician Plan Invalid");
+        }
+        
         return await _usersRepository.createUser(user);
     }
     public async Task<bool> updateUser(int id, User user)
     {
+        if (!user.email.Contains((char)Constans.valueContainedsEmail))
+        {
+            throw new VerificationException("Invalid Email");
+        }
+
+        if (user.phone.Length != 9)
+        {
+            throw new VerificationException("Invalid Phone Number");
+        }
+
+        if (user.type == "technician" && user.plan != null)
+        {
+            throw new VerificationException("Technician Plan Invalid");
+        }
+        
         return await _usersRepository.updateUser(id, user);
     }
 
