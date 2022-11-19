@@ -124,7 +124,7 @@ namespace RepairNowAPI.Controllers
                 }
                 
                 var result = await _usersDomain.deleteUser(id);
-                return StatusCode(StatusCodes.Status200OK,"Usuario Actualizado");
+                return StatusCode(StatusCodes.Status200OK,"Usuario Borrado");
             }
             catch(Exception ex)
             {

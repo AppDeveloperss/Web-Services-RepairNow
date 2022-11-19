@@ -1,4 +1,5 @@
-﻿using RepairNow.Infraestructure;
+﻿using System.Security;
+using RepairNow.Infraestructure;
 
 namespace RepairNow.Domain;
 
@@ -24,6 +25,11 @@ public class AppliancesDomain:IAppliancesDomain
 
     public async Task<bool> createAppliance(Appliance appliance)
     {
+        if (appliance.year>2022)
+        {
+            throw new VerificationException("Invalid Date Year");
+        }
+        
         return await _appliancesRepository.createAppliance(appliance);
     }
 

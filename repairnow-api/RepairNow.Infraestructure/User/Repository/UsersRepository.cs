@@ -2,11 +2,8 @@
 using RepairNow.Infraestructure.Context;
 
 namespace RepairNow.Infraestructure;
-
-//Aquí vamos a hacer la conexión a la base de datos 
 public class UsersRepository:IUsersRepository
 {
-    //Para empezar la conexion vamos a necesitar el glorioso DB context
     private RepairNowDB _repairNowDb;
     public UsersRepository(RepairNowDB repairNowDb)
     {
@@ -83,10 +80,13 @@ public class UsersRepository:IUsersRepository
             try
             {
                 User user = await _repairNowDb.Users.FindAsync(id);
-                user.isActive = false;
-                user.DateUpdate=DateTime.Now;
-                _repairNowDb.Users.Update(user);
-                _repairNowDb.SaveChanges();
+                if (user.isActive)
+                {
+                    user.isActive = false;
+                    user.DateUpdate=DateTime.Now;
+                    _repairNowDb.Users.Update(user);
+                    _repairNowDb.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
