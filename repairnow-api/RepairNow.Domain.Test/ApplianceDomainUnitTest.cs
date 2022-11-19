@@ -19,52 +19,52 @@ public class ApplianceDomainUnitTest
 
         var appliance = new Appliance()
         {
-            firstName="Alonso",
-            lastName="Guerra",
-            email="sada@gmail.com" ,
-            password= "alonsoguerra",
-            address="Av.Palmeras" ,
-            phone="923192832" ,
-            type= "client",
-            plan= "monthly"
+            name = "Freezer",
+            description = "Bug Freezer",
+            brand = "LG",
+            model = "MK-32",
+            year = 2021,
+            urlImage = "inserte_url",
+            insuranceDate = "25/08/10",
+            clientId = 1,
         };
-        var userDomain = new UsersDomain(usersRepository.Object);
-        var result = userDomain.createUser(user);
+        var applianceDomain = new AppliancesDomain(appliancesRepository.Object);
+        var result = applianceDomain.createAppliance(appliance);
         Assert.True(result.Result);
     }
     
     [Fact]
-    public void UpdateUser_ReturnTrue()
+    public void UpdateAppliance_ReturnTrue()
     {
-        var usersRepository = new Mock<IUsersRepository>();
-        usersRepository.Setup(usersRepository => usersRepository.updateUser(1,It.IsAny<User>())).Returns(Task.FromResult(true));
+        var appliancesRepository = new Mock<IAppliancesRepository>();
+        appliancesRepository.Setup(appliancesRepository => appliancesRepository.updateAppliance(1,It.IsAny<Appliance>())).Returns(Task.FromResult(true));
         
-        var OldUser = new User()
+        var oldAppliance = new Appliance()
         {
             id = 1,
-            firstName="Alonso",
-            lastName="Guerra",
-            email="sada@gmail.com" ,
-            password= "alonsoguerra",
-            address="Av.Palmeras" ,
-            phone="923192832" ,
-            type= "client",
-            plan= "monthly"
+            name = "Freezer",
+            description = "Bug Freezer",
+            brand = "LG",
+            model = "MK-32",
+            year = 2021,
+            urlImage = "inserte_url",
+            insuranceDate = "25/08/10",
+            clientId = 1,
         };
-        var newUser = new User()
+        var newAppliance = new Appliance()
         {
-            firstName="Francisco",
-            lastName="Rojas",
-            email="francisco@gmail.com" ,
-            password= "fasd",
-            address="Av.Cito" ,
-            phone="982312212" ,
-            type= "client",
-            plan= "monthly"
+            name = "Washing Machine",
+            description = "Fixed",
+            brand = "SAMSUNG",
+            model = "MK-32",
+            year = 2021,
+            urlImage = "inserte_url",
+            insuranceDate = "25/08/10",
+            clientId = 1,
         };
-        var userDomain = new UsersDomain(usersRepository.Object);
-        var createResult = userDomain.createUser(OldUser);
-        var updateResult = userDomain.updateUser(1,newUser);
+        var applianceDomain = new AppliancesDomain(appliancesRepository.Object);
+        var createResult = applianceDomain.createAppliance(oldAppliance);
+        var updateResult = applianceDomain.updateAppliance(1,newAppliance);
 
         Assert.True(updateResult.Result);
     }

@@ -1,4 +1,5 @@
 ﻿using System.Security;
+using System.Text.RegularExpressions;
 using RepairNow.Infraestructure;
 
 namespace RepairNow.Domain;
@@ -25,6 +26,11 @@ public class AppliancesDomain:IAppliancesDomain
 
     public async Task<bool> createAppliance(Appliance appliance)
     {
+        if (Regex.IsMatch(appliance.name, @"^[0-9]+$"))
+        {
+            throw new VerificationException("Invalid Name Format");
+        }
+        
         if (appliance.year>2022)
         {
             throw new VerificationException("Invalid Date Year");
@@ -35,6 +41,16 @@ public class AppliancesDomain:IAppliancesDomain
 
     public async Task<bool> updateAppliance(int id, Appliance appliance)
     {
+        if (Regex.IsMatch(appliance.name, @"^[0-9]+$"))
+        {
+            throw new VerificationException("Invalid Name Format");
+        }
+        
+        if (appliance.year>2022)
+        {
+            throw new VerificationException("Invalid Date Year");
+        }
+        
         return await _appliancesRepository.updateAppliance(id, appliance);
     }
 
