@@ -9,6 +9,41 @@ public class UsersRepository:IUsersRepository
     {
         _repairNowDb = repairNowDb;
     }
+
+    public async Task<User> GetByEmail(string email)
+    {
+        return await _repairNowDb.Users.SingleOrDefaultAsync(user => user.email == email);
+    }
+
+    public async Task<bool> Login(User user)
+    {
+        await _repairNowDb.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> Signup(User user)
+    {
+        using (var transacction = await _repairNowDb.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                await _repairNowDb.Users.AddAsync(user);
+                await _repairNowDb.SaveChangesAsync();
+                await transacction.CommitAsync();
+            }
+            catch (Exception e)
+            {
+                await transacction.RollbackAsync();
+            }
+            finally
+            {
+                await transacction.DisposeAsync();
+            }
+        }
+
+        return true;
+    }
+
     public List<User> getAll()
     {
         return _repairNowDb.Users.Where(user=>user.isActive).ToList();

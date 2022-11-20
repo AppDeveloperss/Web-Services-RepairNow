@@ -29,6 +29,26 @@ namespace RepairNowAPI.Controllers
             _usersDomain = usersDomain;
             _mapper = mapper;
         }
+        //LOGIN
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login(UserResource userResource)
+        {
+            var user = _mapper.Map<UserResource, User>(userResource);
+            var result = await _usersDomain.Login(user);
+            return Ok(result);
+        }
+        
+        //SIGNUP
+        [HttpPost]
+        [Route("Signup")]
+        [ProducesResponseType(typeof(bool), 200)]
+        public async Task<IActionResult> Signup(UserResource userResource)
+        {
+            var user = _mapper.Map<UserResource, User>(userResource);
+            var result = await _usersDomain.Signup(user);
+            return Ok();
+        }
         
         // GET: api/users
         [HttpGet]

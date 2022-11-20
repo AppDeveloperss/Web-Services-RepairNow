@@ -15,6 +15,18 @@ public class UsersDomain:IUsersDomain
     {
         _usersRepository = usersRepository;
     }
+
+    public async Task<bool> Login(User user)
+    {
+        var result = await _usersRepository.GetByEmail(user.email);
+        return result.password == user.password;
+    }
+
+    public async Task<bool> Signup(User user)
+    {
+        return await _usersRepository.Signup(user);
+    }
+
     public List<User> getAll()
     {
         return _usersRepository.getAll();
