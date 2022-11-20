@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using RepairNow.Domain;
+using RepairNow.Domain.Test;
 using RepairNow.Infraestructure;
 using RepairNow.Infraestructure.Context;
 
@@ -28,6 +29,9 @@ builder.Services.AddScoped<IAppointmentsRepository,AppointmentsRepository>();
 
 builder.Services.AddScoped<IReportsDomain, ReportsDomain>();
 builder.Services.AddScoped<IReportsRepository, ReportsRepository>();
+
+builder.Services.AddScoped<ITokenDomain,TokenDomain>();
+
 //luego te vas a user controller y ese recibe el dominio, luego te vas al dominio y haces lo mismo pero con la infraestructura
 
 

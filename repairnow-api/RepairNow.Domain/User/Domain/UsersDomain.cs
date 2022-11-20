@@ -1,6 +1,7 @@
 ﻿using System.Security;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.VisualBasic;
+using RepairNow.Domain.Test;
 using RepairNow.Infraestructure;
 using RepairNow.Shared;
 
@@ -10,16 +11,24 @@ public class UsersDomain:IUsersDomain
 {
     //Instanciamos una variable en la interfaz
     private IUsersRepository _usersRepository;
+
+    private readonly ITokenDomain _tokenDomain;
     //luego en el constructor de esta clase le pasamos ese parametro
-    public UsersDomain(IUsersRepository usersRepository)
+    public UsersDomain(IUsersRepository usersRepository,ITokenDomain tokenDomain)
     {
         _usersRepository = usersRepository;
+        _tokenDomain = tokenDomain;
     }
 
-    public async Task<bool> Login(User user)
+    public async Task<string> Login(Login user)
     {
         var result = await _usersRepository.GetByEmail(user.email);
-        return result.password == user.password;
+        if (result.password == user.password)
+        {
+            return _tokenDomain.GenerateJwt(user.email);
+        }
+
+        throw new ArgumentException("Invalid username or password");
     }
 
     public async Task<bool> Signup(User user)

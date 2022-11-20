@@ -775,3 +775,8 @@ C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin
 C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\RepairNow.Shared.dll
 C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\RepairNow.Shared.pdb
+C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

@@ -32,10 +32,10 @@ namespace RepairNowAPI.Controllers
         //LOGIN
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> Login(UserResource userResource)
+        public async Task<IActionResult> Login(Login user_login)
         {
-            var user = _mapper.Map<UserResource, User>(userResource);
-            var result = await _usersDomain.Login(user);
+            var user = user_login;
+            var result = await _usersDomain.Login(user_login);
             return Ok(result);
         }
         

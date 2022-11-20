@@ -4,7 +4,7 @@ namespace RepairNow.Domain;
 
 public interface IUsersDomain
 {
-    Task<Boolean> Login(User user);
+    Task<string> Login(Login user);
     Task<Boolean> Signup(User user);
     List<User> getAll();
     User getUserById(int id);
