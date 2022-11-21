@@ -15,8 +15,11 @@ public class RepairNowDB: DbContext
     {
         if (!optionsBuilder.IsConfigured) 
         {
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-            optionsBuilder.UseMySql("server=localhost;user=root;password=Gunsnroses123#;database=repairnowdb",serverVersion);
+            // 8  0   29
+            var serverVersion = new MySqlServerVersion(new Version(5, 5, 62));
+            //"Server=localhost,3306;Uid=root;Pwd=LaUpc123*;Database=LearningCenterDB"
+            //"Server=sql10.freemysqlhosting.net;User ID=sql10579414;Password=GtlkhVbHlU;Database=sql10579414"
+            optionsBuilder.UseMySql("Server=sql10.freemysqlhosting.net,3306;Uid=sql10579414;Pwd=GtlkhVbHlU;Database=sql10579414",serverVersion);
         }
     }
     public RepairNowDB():base()
