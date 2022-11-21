@@ -40,10 +40,17 @@ public class UsersDomain:IUsersDomain
     {
         return _usersRepository.getAll();
     }
+
+    public async Task<User> getByEmail(string email)
+    {
+        return await _usersRepository.GetByEmail(email);
+    }
+
     public User getUserById(int id)
     {
         return  _usersRepository.getUserById(id);
     }
+
     public async Task<bool> createUser(User user)
     {
         if (!user.email.Contains((char)Constans.valueContainedsEmail))

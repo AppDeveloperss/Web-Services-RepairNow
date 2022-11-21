@@ -4,6 +4,7 @@ using RepairNow.Domain;
 using RepairNow.Domain.Test;
 using RepairNow.Infraestructure;
 using RepairNow.Infraestructure.Context;
+using RepairNowAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,6 +70,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.UseHttpsRedirection();
 

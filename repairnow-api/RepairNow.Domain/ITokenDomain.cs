@@ -3,6 +3,6 @@
 public interface ITokenDomain
 {
     string GenerateJwt(string  email);
-    bool ValidateJwt(string token);
+    string ValidateJwt(string token);
 
 }

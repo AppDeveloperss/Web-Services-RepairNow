@@ -32,8 +32,54 @@ public class TokenDomain:ITokenDomain
         
     }
 
-    public bool ValidateJwt(string token)
+    public string ValidateJwt(string token)
     {
-        throw new NotImplementedException();
+        if (token == null)return null;
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+
+        var key = Encoding.ASCII.GetBytes(Constans.SecretKey);
+
+        try
+
+        {
+
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
+
+            {
+
+                ValidateIssuerSigningKey = true,
+
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+
+                ValidateIssuer = false,
+
+                ValidateAudience = false,
+
+                // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
+
+                ClockSkew = TimeSpan.Zero
+
+            }, out SecurityToken validatedToken);
+
+
+
+            var jwtToken = (JwtSecurityToken)validatedToken;
+
+            var email =jwtToken.Claims.First(x => x.Type == "email").Value;
+
+
+
+            // return user id from JWT token if validation successful
+
+            return email;
+
+        }
+        catch
+        {
+            // return null if validation fails
+            return null;
+
+        }
     }
 }

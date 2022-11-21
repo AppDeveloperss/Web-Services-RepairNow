@@ -6,6 +6,7 @@ using System.Net.Mime;
 using System.Security;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using NuGet.Protocol;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,7 @@ namespace RepairNowAPI.Controllers
         }
         //LOGIN
         [HttpPost]
+        [AllowAnonymous]
         [Route("Login")]
         public async Task<IActionResult> Login(Login user_login)
         {
