@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using RepairNow.Domain;
 using RepairNow.Domain.Test;
@@ -53,6 +54,15 @@ builder.Services.AddAutoMapper(
     typeof(RepairNowAPI.Mapper.ModelToResource),
     typeof(RepairNowAPI.Mapper.ResourceToModel)
 );
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+});
 
 
 var app = builder.Build();

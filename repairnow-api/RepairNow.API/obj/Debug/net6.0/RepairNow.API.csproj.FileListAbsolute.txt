@@ -780,3 +780,6 @@ C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin
 C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
 C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

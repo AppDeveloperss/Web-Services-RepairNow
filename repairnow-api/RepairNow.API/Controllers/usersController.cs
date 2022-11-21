@@ -17,6 +17,7 @@ using RepairNowAPI.Response;
 
 namespace RepairNowAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]

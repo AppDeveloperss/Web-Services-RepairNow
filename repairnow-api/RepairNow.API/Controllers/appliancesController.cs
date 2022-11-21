@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RepairNow.Domain;
 using RepairNow.Infraestructure;
@@ -7,6 +8,7 @@ using RepairNowAPI.Resources;
 
 namespace RepairNowAPI.Controllers
 {
+    [Authorize]
     [Route("api/appliances")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
