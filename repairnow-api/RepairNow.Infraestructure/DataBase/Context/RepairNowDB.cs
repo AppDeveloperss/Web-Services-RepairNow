@@ -15,8 +15,8 @@ public class RepairNowDB: DbContext
     {
         if (!optionsBuilder.IsConfigured) 
         {
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-            optionsBuilder.UseMySql("server=localhost;user=root;password=Gunsnroses123#;database=repairnowdb",serverVersion);
+            var serverVersion = new MySqlServerVersion(new Version(5, 7, 9));
+            optionsBuilder.UseMySql("server=localhost;port=50954;user=azure;password=6#vWHD_$;database=localdb",serverVersion);
         }
     }
     public RepairNowDB():base()

@@ -61,8 +61,7 @@ builder.Services.AddScoped<ITokenDomain,TokenDomain>();
 
 //Leer cadena de conexion
 var connectionString = builder.Configuration.GetConnectionString("RepairNowConnection");
-var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-
+var serverVersion = new MySqlServerVersion(new Version(5, 7, 9));
 
 //Conexion a Base De datos
 
