@@ -25,8 +25,7 @@ namespace RepairNowAPI.Controllers
         
         // GET: api/appliances
         [HttpGet]
-        //[Authorize("root,admin,employee,customer")]
-        [AllowAnonymous]
+        [Authorize("customer")]
         public IEnumerable<Appliance> Get()
         {
             return _appliancesDomain.getAll();
@@ -34,7 +33,7 @@ namespace RepairNowAPI.Controllers
         
         // GET: api/appliances/5
         [HttpGet("{id}")]
-        [AllowAnonymous]
+        [Authorize("customer")]
         public Appliance Get(int id)
         {
             return _appliancesDomain.getApplianceById(id);
@@ -44,7 +43,7 @@ namespace RepairNowAPI.Controllers
         // POST: api/appliances
         [HttpPost]
         [ProducesResponseType(typeof(IActionResult),201)]
-        [AllowAnonymous]
+        [Authorize("customer")]
         public async Task<IActionResult> Post([FromBody] ApplianceResource applianceInput)
         {
             try
@@ -64,7 +63,7 @@ namespace RepairNowAPI.Controllers
         
         // PUT: api/appliances/5
         [HttpPut("{id}")]
-        [AllowAnonymous]
+        [Authorize("customer")]
 
         public async Task<IActionResult> Put(int id, [FromBody] ApplianceResource applianceInput)
         {

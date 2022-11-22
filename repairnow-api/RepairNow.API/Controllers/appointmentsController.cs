@@ -26,7 +26,7 @@ namespace RepairNowAPI.Controllers
         
         // GET: api/appointments
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize("customer")]
         public IEnumerable<Appointment> Get()
         {
             return _appointmentsDomain.getAll();
@@ -34,13 +34,14 @@ namespace RepairNowAPI.Controllers
         
         // GET: api/appointments/5
         [HttpGet("{id}")]
+        [Authorize("customer")]
         public Appointment Get(int id)
         {
             return _appointmentsDomain.getAppointmentById(id);
         }
         
-        [Authorize("root,admin,employee,customer")]
         [HttpPost]
+        [Authorize("customer")]
         [ProducesResponseType(typeof(IActionResult),201)]
         public async Task<IActionResult> Post([FromBody] AppointmentResource appointmentInput)
         {
@@ -62,6 +63,7 @@ namespace RepairNowAPI.Controllers
         
         // PUT: api/appointments/5
         [HttpPut("{id}")]
+        [Authorize("customer")]
         public async Task<IActionResult> Put(int id, [FromBody] AppointmentResource appointmentInput)
         {
             
@@ -85,6 +87,7 @@ namespace RepairNowAPI.Controllers
         
         // DELETE: api/appointments/5
         [HttpDelete("{id}")]
+        [Authorize("customer")]
         public async Task<IActionResult> Delete(int id)
         {
             try

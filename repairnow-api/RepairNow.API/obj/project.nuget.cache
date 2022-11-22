@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GMFsByf2CnPlxrY1fpL2wycdZthHM/Mdg3qBAkQpqLcWLFSYzC3FeSmwRXzykEJaBobY6QhsdqhuERVi8072eA==",
+  "dgSpecHash": "YqLa9jRQbZ+7mz3gxu3F6+nZPOPvgKWUtHNuKOy9ee6XJojbcre7w0JZE4scWgFnWbaGUe7lpVrJ7DdxorsR8g==",
   "success": true,
   "projectFilePath": "C:\\Users\\axekr\\OneDrive\\Escritorio\\repairnow-api\\repairnow-api\\RepairNow.API\\RepairNow.API.csproj",
   "expectedPackageFiles": [
@@ -126,8 +126,9 @@
     "C:\\Users\\axekr\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\axekr\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\axekr\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
-    "C:\\Users\\axekr\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
-    "C:\\Users\\axekr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\axekr\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.4.0\\swashbuckle.aspnetcore.annotations.6.4.0.nupkg.sha512",
+    "C:\\Users\\axekr\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\axekr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
     "C:\\Users\\axekr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "C:\\Users\\axekr\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\axekr\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",

@@ -7,34 +7,56 @@ namespace RepairNowAPI.Filter;
 
 public class AuthorizeAttribute: Attribute,IAuthorizationFilter
 {
+    //private readonly List<string> _roles;
+//
+    //public AuthorizeAttribute(params string[] roles)
+    //{
+    //    _roles = (roles.Count() > 0) ? roles.FirstOrDefault().Split(",").ToList() : new List<string>();
+    //}
+    //
+    //
+    //public void OnAuthorization(AuthorizationFilterContext context)
+    //{
+    //    var allowAnnonymus = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
+//
+    //    if (allowAnnonymus)
+    //    {
+    //        return;
+    //    }
+//
+//
+    //    var user = (User)context.HttpContext.Items["User"];
+    //    
+    //    Console.WriteLine(user.roles);
+    //    Console.WriteLine("/n");
+//
+    //    if (user == null || (_roles.Any() && !_roles.Contains(user.roles))) 
+    //    {
+    //        context.Result = new JsonResult(new{message = "Unathorized"}){StatusCode = StatusCodes.Status401Unauthorized};
+    //    }
+//
+//
+    //}
     private readonly List<string> _roles;
 
     public AuthorizeAttribute(params string[] roles)
     {
-        _roles = (roles.Count() > 0) ? roles.FirstOrDefault().Split(",").ToList() : new List<string>();
+        _roles =(roles.Count()> 0) ?  roles.FirstOrDefault().Split(",").ToList() : new List<string>();
     }
-    
-    
     public void OnAuthorization(AuthorizationFilterContext context)
     {
-        var allowAnnonymus = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
-
-        if (allowAnnonymus)
-        {
+        // If action is decorated with [AllowAnonymous] attribute
+        var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
+        // Then skip authorization process
+        if (allowAnonymous)
             return;
-        }
-
-
-        var user = (User)context.HttpContext.Items["User"];
         
-        Console.WriteLine(user.roles);
-        Console.WriteLine("/n");
+        // Authorization process
+        var user = (User)context.HttpContext.Items["User"];
 
-        if (user == null || (_roles.Any() && !_roles.Contains(user.roles))) 
+        if (user == null || !_roles.Any() || (_roles.Any() && !_roles.Contains(user.roles)))
         {
-            context.Result = new JsonResult(new{message = "Unathorized"}){StatusCode = StatusCodes.Status401Unauthorized};
+            context.Result = new JsonResult(new {message="Unathorized"}) {StatusCode = StatusCodes.Status401Unauthorized };
         }
-
-
     }
 }

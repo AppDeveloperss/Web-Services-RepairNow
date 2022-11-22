@@ -17,8 +17,38 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.EnableAnnotations();
+    options.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        Description = "JWT Authorization header using the Bearer Scheme"
+    });
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "bearerAuth" }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
 
+builder.Services.AddAuthorization(options =>
+{
+
+    options.AddPolicy("customer",
+        authBuilder =>
+        {
+            authBuilder.RequireRole("customer");
+        });
+
+});
 
 //Inyeccion de Dependencias
 //Primero se hace esto para comenzar con la inyeccion, le paso la interfaz y por el otro la clase
@@ -37,7 +67,6 @@ builder.Services.AddScoped<IReportsRepository, ReportsRepository>();
 builder.Services.AddScoped<ITokenDomain,TokenDomain>();
 
 //luego te vas a user controller y ese recibe el dominio, luego te vas al dominio y haces lo mismo pero con la infraestructura
-
 
 //Leer cadena de conexion
 var connectionString = builder.Configuration.GetConnectionString("RepairNowConnection");
@@ -76,12 +105,10 @@ using (var context = scope.ServiceProvider.GetService<RepairNowDB>())
     context.Database.EnsureCreated();
 }
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+
+app.UseSwaggerUI();
 
 app.UseMiddleware<JwtMiddleware>();
 
