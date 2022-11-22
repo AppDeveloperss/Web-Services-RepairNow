@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'repairnow'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B94C72FC5D1443A7881F5947145A7D97 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BD4C34567F3540BD82035C9FCA46253F }}
           package: .
