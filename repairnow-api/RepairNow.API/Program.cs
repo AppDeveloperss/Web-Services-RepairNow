@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -15,7 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddJsonOptions(x =>
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -39,16 +40,6 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddAuthorization(options =>
-{
-
-    options.AddPolicy("customer",
-        authBuilder =>
-        {
-            authBuilder.RequireRole("customer");
-        });
-
-});
 
 //Inyeccion de Dependencias
 //Primero se hace esto para comenzar con la inyeccion, le paso la interfaz y por el otro la clase
@@ -87,13 +78,17 @@ builder.Services.AddAutoMapper(
 );
 
 builder.Services.AddAuthentication(options =>
+
 {
+
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+
 });
+
 
 
 var app = builder.Build();
@@ -113,6 +108,11 @@ app.UseSwaggerUI();
 app.UseMiddleware<JwtMiddleware>();
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 app.UseAuthorization();
 

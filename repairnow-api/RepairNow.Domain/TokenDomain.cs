@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using RepairNow.Shared;
 
-namespace RepairNow.Domain.Test;
+namespace RepairNow.Domain;
 
 public class TokenDomain:ITokenDomain
 {

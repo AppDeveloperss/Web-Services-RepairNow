@@ -1,10 +1,10 @@
 ﻿using System.Net.Mime;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RepairNow.Domain;
 using RepairNow.Infraestructure;
 using RepairNowAPI.Resources;
+using RepairNowAPI.Filter;
 
 namespace RepairNowAPI.Controllers
 {

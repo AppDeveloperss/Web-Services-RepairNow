@@ -58,6 +58,7 @@ namespace RepairNowAPI.Controllers
         
         // GET: api/users
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<User> Get()
         {
             return _usersDomain.getAll();
@@ -65,6 +66,7 @@ namespace RepairNowAPI.Controllers
 
         // GET: api/users/5
         [HttpGet("{id}", Name = "Get")]
+        [AllowAnonymous]
         public User Get(int id)
         {
             return _usersDomain.getUserById(id);
@@ -72,6 +74,7 @@ namespace RepairNowAPI.Controllers
 
         // POST: api/users
         [HttpPost]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(IActionResult),201)]
         public async Task<IActionResult> Post([FromBody] UserResource userInput)
         {
@@ -115,6 +118,7 @@ namespace RepairNowAPI.Controllers
 
         // PUT: api/users/5
         [HttpPut("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Put(int id, [FromBody] UserResource userInput)
         {
             try
@@ -140,6 +144,7 @@ namespace RepairNowAPI.Controllers
 
         // DELETE: api/users/5
         [HttpDelete("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Delete(int id)
         {
             

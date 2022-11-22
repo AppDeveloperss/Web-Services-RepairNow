@@ -1,10 +1,11 @@
 ﻿using RepairNow.Infraestructure;
+using RepairNowAPI.Response;
 
 namespace RepairNow.Domain;
 
 public interface IUsersDomain
 {
-    Task<string> Login(Login user);
+    Task<AutenthicateResponse> Login(Login user);
     Task<Boolean> Signup(User user);
     List<User> getAll();
     Task<User> getByEmail(string email);

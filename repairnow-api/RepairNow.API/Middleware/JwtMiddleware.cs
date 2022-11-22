@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
-using RepairNow.Domain;
-using RepairNow.Domain.Test;
+﻿using RepairNow.Domain;
 
 namespace RepairNowAPI.Middleware;
 
@@ -15,7 +13,7 @@ public class JwtMiddleware
 
     public async Task Invoke(HttpContext context, ITokenDomain tokenDomain, IUsersDomain usersDomain)
     {
-        var token = context.Request.Headers["Authorization"].FirstOrDefault() ?.Split(" ").Last();
+        var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
         var email = tokenDomain.ValidateJwt(token);
 
         if (email != null)

@@ -1,9 +1,11 @@
 ﻿using System.Security;
+using AutoMapper;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.VisualBasic;
 using RepairNow.Domain.Test;
 using RepairNow.Infraestructure;
 using RepairNow.Shared;
+using RepairNowAPI.Response;
 
 namespace RepairNow.Domain;
 //Aquí se hace la lógica del negocio
@@ -11,21 +13,27 @@ public class UsersDomain:IUsersDomain
 {
     //Instanciamos una variable en la interfaz
     private IUsersRepository _usersRepository;
+    private readonly IMapper _mapper;
 
     private readonly ITokenDomain _tokenDomain;
     //luego en el constructor de esta clase le pasamos ese parametro
-    public UsersDomain(IUsersRepository usersRepository,ITokenDomain tokenDomain)
+    public UsersDomain(IUsersRepository usersRepository,ITokenDomain tokenDomain,IMapper mapper)
     {
         _usersRepository = usersRepository;
         _tokenDomain = tokenDomain;
+        _mapper = mapper;
     }
 
-    public async Task<string> Login(Login user)
+    //AutenthicateResponse
+    public async Task<AutenthicateResponse> Login(Login user)
     {
         var result = await _usersRepository.GetByEmail(user.email);
         if (result.password == user.password)
         {
-            return _tokenDomain.GenerateJwt(user.email);
+            var response = _mapper.Map<User, AutenthicateResponse>(result);
+            var token=_tokenDomain.GenerateJwt(user.email);
+            response.token = token;
+            return response;
         }
 
         throw new ArgumentException("Invalid username or password");

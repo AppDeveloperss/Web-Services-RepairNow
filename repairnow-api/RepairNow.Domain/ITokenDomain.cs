@@ -1,4 +1,4 @@
-﻿namespace RepairNow.Domain.Test;
+﻿namespace RepairNow.Domain;
 
 public interface ITokenDomain
 {
