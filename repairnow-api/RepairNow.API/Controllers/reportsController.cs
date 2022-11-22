@@ -26,6 +26,7 @@ namespace RepairNowAPI.Controllers
         
         // GET: api/reports
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<Report> Get()
         {
             return _reportsDomain.getAll();
@@ -33,6 +34,7 @@ namespace RepairNowAPI.Controllers
         
         // GET: api/reports/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public Report Get(int id)
         {
             return _reportsDomain.getReportById(id);
@@ -40,6 +42,7 @@ namespace RepairNowAPI.Controllers
         
         // POST: api/reports
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody] ReportResource reportInput)
         {
             try
@@ -62,6 +65,7 @@ namespace RepairNowAPI.Controllers
         
         // PUT: api/reports/5
         [HttpPut("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Put(int id, [FromBody] ReportResource reportInput)
         {
             try
@@ -85,6 +89,7 @@ namespace RepairNowAPI.Controllers
         
         // DELETE: api/reports/5
         [HttpDelete("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Delete(int id)
         {
             

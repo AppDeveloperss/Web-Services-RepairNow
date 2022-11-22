@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RepairNow.Infraestructure.Context;
 
@@ -10,9 +11,10 @@ using RepairNow.Infraestructure.Context;
 namespace RepairNow.Infraestructure.Migrations
 {
     [DbContext(typeof(RepairNowDB))]
-    partial class RepairNowDBModelSnapshot : ModelSnapshot
+    [Migration("20221122011456_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 21, 16, 29, 56, 680, DateTimeKind.Local).AddTicks(2911));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(3396));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
@@ -82,7 +84,7 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 21, 16, 29, 56, 680, DateTimeKind.Local).AddTicks(2334));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(2872));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
@@ -124,7 +126,7 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 21, 16, 29, 56, 680, DateTimeKind.Local).AddTicks(1761));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(2344));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
@@ -167,7 +169,7 @@ namespace RepairNow.Infraestructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 11, 21, 16, 29, 56, 680, DateTimeKind.Local).AddTicks(876));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(1348));
 
                     b.Property<DateTime?>("DateUpdate")
                         .HasColumnType("datetime(6)");
@@ -204,6 +206,12 @@ namespace RepairNow.Infraestructure.Migrations
 
                     b.Property<string>("plan")
                         .HasColumnType("longtext");
+
+                    b.Property<string>("roles")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("longtext")
+                        .HasDefaultValue("customer");
 
                     b.Property<string>("type")
                         .IsRequired()

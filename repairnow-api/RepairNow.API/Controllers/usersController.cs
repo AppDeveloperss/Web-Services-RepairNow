@@ -44,11 +44,14 @@ namespace RepairNowAPI.Controllers
         
         //SIGNUP
         [HttpPost]
+        [AllowAnonymous]
         [Route("Signup")]
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<IActionResult> Signup(UserResource userResource)
         {
             var user = _mapper.Map<UserResource, User>(userResource);
+            user.isActive = true;
+            user.roles = "customer";
             var result = await _usersDomain.Signup(user);
             return Ok();
         }
@@ -123,6 +126,7 @@ namespace RepairNowAPI.Controllers
             
                 var user = _mapper.Map<UserResource, User>(userInput);
                 user.id = id;
+                user.roles = "customer";
                 var result = await _usersDomain.updateUser(id, user);
                 return StatusCode(StatusCodes.Status200OK,"Usuario Actualizado");
             }

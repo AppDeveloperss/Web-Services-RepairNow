@@ -26,6 +26,7 @@ namespace RepairNowAPI.Controllers
         
         // GET: api/appointments
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<Appointment> Get()
         {
             return _appointmentsDomain.getAll();
@@ -38,6 +39,7 @@ namespace RepairNowAPI.Controllers
             return _appointmentsDomain.getAppointmentById(id);
         }
         
+        [Authorize("root,admin,employee,customer")]
         [HttpPost]
         [ProducesResponseType(typeof(IActionResult),201)]
         public async Task<IActionResult> Post([FromBody] AppointmentResource appointmentInput)
@@ -80,7 +82,6 @@ namespace RepairNowAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
             }
         }
-        
         
         // DELETE: api/appointments/5
         [HttpDelete("{id}")]

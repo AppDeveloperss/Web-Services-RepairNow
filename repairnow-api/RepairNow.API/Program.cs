@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using RepairNow.Domain;
 using RepairNow.Domain.Test;
 using RepairNow.Infraestructure;
@@ -17,6 +18,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 //Inyeccion de Dependencias
 //Primero se hace esto para comenzar con la inyeccion, le paso la interfaz y por el otro la clase

@@ -11,5 +11,6 @@ public class User: BaseModel
     public string phone { get; set; }
     public string type { get; set; }
     public string? plan { get; set; }
+    public string roles { get; set; }
     
 }

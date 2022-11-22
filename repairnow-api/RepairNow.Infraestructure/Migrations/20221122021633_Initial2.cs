@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RepairNow.Infraestructure.Migrations
 {
-    public partial class Initial7 : Migration
+    public partial class Initial2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,40 +14,40 @@ namespace RepairNow.Infraestructure.Migrations
                 table: "Users",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(2022, 11, 14, 22, 47, 56, 821, DateTimeKind.Local).AddTicks(8154),
+                defaultValue: new DateTime(2022, 11, 21, 21, 16, 33, 724, DateTimeKind.Local).AddTicks(1137),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime(6)",
-                oldDefaultValue: new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(7073));
+                oldDefaultValue: new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(1348));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreated",
                 table: "Reports",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(2022, 11, 14, 22, 47, 56, 821, DateTimeKind.Local).AddTicks(8876),
+                defaultValue: new DateTime(2022, 11, 21, 21, 16, 33, 724, DateTimeKind.Local).AddTicks(2164),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime(6)",
-                oldDefaultValue: new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(7804));
+                oldDefaultValue: new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(2344));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreated",
                 table: "Appointments",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(2022, 11, 14, 22, 47, 56, 821, DateTimeKind.Local).AddTicks(9475),
+                defaultValue: new DateTime(2022, 11, 21, 21, 16, 33, 724, DateTimeKind.Local).AddTicks(2760),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime(6)",
-                oldDefaultValue: new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(8403));
+                oldDefaultValue: new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(2872));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreated",
                 table: "Appliances",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(2022, 11, 14, 22, 47, 56, 822, DateTimeKind.Local).AddTicks(115),
+                defaultValue: new DateTime(2022, 11, 21, 21, 16, 33, 724, DateTimeKind.Local).AddTicks(3293),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime(6)",
-                oldDefaultValue: new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(9062));
+                oldDefaultValue: new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(3396));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -57,40 +57,40 @@ namespace RepairNow.Infraestructure.Migrations
                 table: "Users",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(7073),
+                defaultValue: new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(1348),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime(6)",
-                oldDefaultValue: new DateTime(2022, 11, 14, 22, 47, 56, 821, DateTimeKind.Local).AddTicks(8154));
+                oldDefaultValue: new DateTime(2022, 11, 21, 21, 16, 33, 724, DateTimeKind.Local).AddTicks(1137));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreated",
                 table: "Reports",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(7804),
+                defaultValue: new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(2344),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime(6)",
-                oldDefaultValue: new DateTime(2022, 11, 14, 22, 47, 56, 821, DateTimeKind.Local).AddTicks(8876));
+                oldDefaultValue: new DateTime(2022, 11, 21, 21, 16, 33, 724, DateTimeKind.Local).AddTicks(2164));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreated",
                 table: "Appointments",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(8403),
+                defaultValue: new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(2872),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime(6)",
-                oldDefaultValue: new DateTime(2022, 11, 14, 22, 47, 56, 821, DateTimeKind.Local).AddTicks(9475));
+                oldDefaultValue: new DateTime(2022, 11, 21, 21, 16, 33, 724, DateTimeKind.Local).AddTicks(2760));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreated",
                 table: "Appliances",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(2022, 11, 14, 22, 6, 57, 283, DateTimeKind.Local).AddTicks(9062),
+                defaultValue: new DateTime(2022, 11, 21, 20, 14, 56, 506, DateTimeKind.Local).AddTicks(3396),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime(6)",
-                oldDefaultValue: new DateTime(2022, 11, 14, 22, 47, 56, 822, DateTimeKind.Local).AddTicks(115));
+                oldDefaultValue: new DateTime(2022, 11, 21, 21, 16, 33, 724, DateTimeKind.Local).AddTicks(3293));
         }
     }
 }
