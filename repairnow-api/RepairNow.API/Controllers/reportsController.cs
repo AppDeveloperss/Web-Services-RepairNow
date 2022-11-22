@@ -1,13 +1,13 @@
-﻿
-
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RepairNow.Domain;
 using RepairNow.Infraestructure;
 using RepairNowAPI.Resources;
+using RepairNowAPI.Filter;
 
 namespace RepairNowAPI.Controllers
 {
+    [Authorize]
     [Route("api/reports")]
     [ApiController]
     
@@ -16,14 +16,15 @@ namespace RepairNowAPI.Controllers
         private IReportsDomain _reportsDomain;
         private IMapper _mapper;
         
-        public ReportsController(IReportsDomain reportsDomain, IMapper _mapper)
+        public ReportsController(IReportsDomain reportsDomain, IMapper mapper)
         {
             _reportsDomain = reportsDomain;
-            this._mapper=_mapper;
+            _mapper=mapper;
         }
         
         // GET: api/reports
         [HttpGet]
+        [Authorize("customer")]
         public IEnumerable<Report> Get()
         {
             return _reportsDomain.getAll();
@@ -31,6 +32,7 @@ namespace RepairNowAPI.Controllers
         
         // GET: api/reports/5
         [HttpGet("{id}")]
+        [Authorize("customer")]
         public Report Get(int id)
         {
             return _reportsDomain.getReportById(id);
@@ -38,29 +40,71 @@ namespace RepairNowAPI.Controllers
         
         // POST: api/reports
         [HttpPost]
-        public async Task<Boolean> Post([FromBody] ReportResource reportResource)
+        [Authorize("customer")]
+        public async Task<IActionResult> Post([FromBody] ReportResource reportInput)
         {
-            var user = _mapper.Map<ReportResource, Report>(reportResource);
-            string xd = "aea";
-            var result = await _reportsDomain.createReport(xd);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var report = _mapper.Map<ReportResource, Report>(reportInput);
+                var result = await _reportsDomain.createReport(report);
+            
+                return StatusCode(StatusCodes.Status201Created,"Reporte Creado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
         }
         
         // PUT: api/reports/5
         [HttpPut("{id}")]
-        public Boolean Put(int id, [FromBody] string value)
+        [Authorize("customer")]
+        public async Task<IActionResult> Put(int id, [FromBody] ReportResource reportInput)
         {
-            var result = _reportsDomain.updateReport(id, value);
-            return result;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var report = _mapper.Map<ReportResource, Report>(reportInput);
+                report.id = id;
+                var result = await _reportsDomain.updateReport(id, report);
+                return StatusCode(StatusCodes.Status200OK,"Reporte Actualizado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
         }
         
         
         // DELETE: api/reports/5
         [HttpDelete("{id}")]
-        public Boolean Delete(int id)
+        [Authorize("customer")]
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _reportsDomain.deleteReport(id);
-            return result;
+            
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Error de Formato");
+                }
+            
+                var result = await _reportsDomain.deleteReport(id);
+                return StatusCode(StatusCodes.Status200OK,"Reporte Eliminado Satisfactoriamente");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Error al procesar");
+            }
         }
 
     }

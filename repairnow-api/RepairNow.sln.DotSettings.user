@@ -1,0 +1,10 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4c19c5b1_002D2768_002D40f8_002D904b_002D8b686a24d525/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;RepairNow.Domain.Test&amp;gt; #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.Domain.Test" Presentation="&amp;lt;RepairNow.Domain.Test&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a4f58d33_002D25f5_002D43e2_002Dac8d_002D68a6e12fe5aa/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Sum_ReturnSum" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.Domain.Test" Presentation="&amp;lt;RepairNow.Domain.Test&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e742ab5c_002Da937_002D49bd_002Da77f_002Da1ef893a0ba4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;RepairNow.Domain.Test&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\axekr\OneDrive\Escritorio\repairnow-api\repairnow-api\RepairNow.Domain.Test" Presentation="&amp;lt;RepairNow.Domain.Test&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
